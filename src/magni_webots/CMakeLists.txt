@@ -11,7 +11,10 @@ find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(webots_ros2_driver REQUIRED)
 find_package(pluginlib REQUIRED)
+find_package(launch_ros REQUIRED) # For ROS launch functionalities
+find_package(magni_description REQUIRED) # For magni URDF and launch
 
+# Existing C++ Node setup (MagniDriver)
 add_executable(MagniDriver src/MagniDriver.cpp)
 target_include_directories(MagniDriver PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -27,6 +30,18 @@ ament_target_dependencies(
 
 install(TARGETS MagniDriver
   DESTINATION lib/${PROJECT_NAME})
+
+# Install launch files
+install(
+  DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME}/
+)
+
+# Install world files
+install(
+  DIRECTORY worlds
+  DESTINATION share/${PROJECT_NAME}/
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
