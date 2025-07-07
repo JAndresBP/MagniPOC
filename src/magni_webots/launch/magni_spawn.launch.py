@@ -20,7 +20,8 @@ def get_robot_spawner(*args):
     robot_spawner_node = URDFSpawner(
         name='magni',
         robot_description=magni_description,
-        relative_path_prefix=os.path.join(magni_webots_pkg_share)
+        relative_path_prefix=os.path.join(magni_webots_pkg_share),
+        translation="0 0 0.1"
     )
     
     magni_driver = WebotsController(
