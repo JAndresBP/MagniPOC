@@ -8,25 +8,51 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(webots_ros2_driver REQUIRED)
 find_package(pluginlib REQUIRED)
 
-add_executable(MagniDriver src/MagniDriver.cpp)
-target_include_directories(MagniDriver PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include/${PROJECT_NAME}>)
-target_compile_features(MagniDriver PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+# Export the plugin configuration file
+pluginlib_export_plugin_description_file(webots_ros2_driver magni_driver.xml)
+
+add_library(
+  ${PROJECT_NAME}
+  SHARED
+  src/MagniDriver.cpp
+)
+target_include_directories(
+  ${PROJECT_NAME}
+  PRIVATE
+  include
+)
 ament_target_dependencies(
-  MagniDriver
-  "rclcpp"
-  "geometry_msgs"
-  "webots_ros2_driver"
-  "pluginlib"
+  ${PROJECT_NAME}
+  rclcpp
+  webots_ros2_driver
+  pluginlib
+)
+install(TARGETS
+  ${PROJECT_NAME}
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
 )
 
-install(TARGETS MagniDriver
-  DESTINATION lib/${PROJECT_NAME})
+# Install additional directories
+install(
+  DIRECTORY 
+  launch
+  resource
+  worlds
+  DESTINATION share/${PROJECT_NAME}/
+)
+ament_export_include_directories(
+  include
+)
+ament_export_libraries(
+  ${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

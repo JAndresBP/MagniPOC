@@ -27,11 +27,10 @@ RUN echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/Cyberbotics.asc] https://c
 RUN apt-get update
 
 RUN apt-get install -y python3-pip \
+    python3-pillow \
     webots \
     ros-jazzy-webots-ros2 \
     ros-jazzy-rviz2 \
-    ros-dev-tools \
-    python3-pillow \
     ros-jazzy-nav2-bringup \
     ros-jazzy-cartographer-ros \
     ros-jazzy-teleop-twist-keyboard

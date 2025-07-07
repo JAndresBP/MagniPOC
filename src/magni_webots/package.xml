@@ -2,8 +2,8 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>magni_webots</name>
-  <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <version>0.0.1</version> <!-- Updated version -->
+  <description>Package to simulate Magni robot in Webots using an existing world and magni_description.</description> <!-- Updated description -->
   <maintainer email="julioandres.bp@outlook.com">julio</maintainer>
   <license>Apache-2.0</license>
 
@@ -11,8 +11,9 @@
 
   <depend>rclcpp</depend>
   <depend>geometry_msgs</depend>
-  <depend>webots_ros2_driver</depend>
   <depend>pluginlib</depend>
+  <depend>webots_ros2_driver</depend>
+  <depend>magni_description</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
