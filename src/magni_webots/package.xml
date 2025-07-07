@@ -9,17 +9,11 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <!-- Core dependencies for this package's functionality -->
-  <depend>launch</depend> <!-- For launch system itself -->
-  <depend>launch_ros</depend> <!-- For ROS-specific launch integration -->
+  <depend>rclcpp</depend>
+  <depend>geometry_msgs</depend>
+  <depend>pluginlib</depend>
   <depend>webots_ros2_driver</depend>
-  <depend>magni_description</depend> <!-- For URDF and description launch -->
-
-  <!-- Existing dependencies, kept if still relevant or brought by others -->
-  <depend>rclcpp</depend> <!-- Kept from original, though current files are Python launch -->
-  <depend>geometry_msgs</depend> <!-- Kept from original -->
-  <depend>pluginlib</depend> <!-- Kept from original -->
-
+  <depend>magni_description</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

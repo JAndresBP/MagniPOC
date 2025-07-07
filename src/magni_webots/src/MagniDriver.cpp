@@ -13,8 +13,8 @@ namespace magni_driver {
   void MagniDriver::init(webots_ros2_driver::WebotsNode *node, std::unordered_map<std::string, std::string> &parameters)
   {
     //get reference from webots
-    right_motor = wb_robot_get_device("right wheel motor");
-    left_motor = wb_robot_get_device("left wheel motor");
+    right_motor = wb_robot_get_device("right_wheel_joint");
+    left_motor = wb_robot_get_device("left_wheel_joint");
 
     wb_motor_set_position(right_motor, INFINITY);
     wb_motor_set_velocity(right_motor, 0);

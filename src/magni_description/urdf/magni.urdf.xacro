@@ -36,23 +36,23 @@
         <mesh filename="package://magni_description/meshes/magni_body.dae" />
       </geometry>
     </visual>
-	<visual>
+	  <visual>
       <origin xyz="${-wheel_xpos-0.169} 0.17 ${-wheel_r+0.09}" rpy="0 0 ${pi}" />
       <geometry>
         <mesh filename="package://magni_description/meshes/caster_wheel.dae" />
       </geometry>
     </visual>
-	<visual>
+	  <visual>
       <origin xyz="${-wheel_xpos-0.169} -0.17 ${-wheel_r+0.09}" rpy="0 0 ${pi}" />
       <geometry>
         <mesh filename="package://magni_description/meshes/caster_wheel.dae" />
       </geometry>
     </visual>
     <collision>
-	  <origin xyz="${-wheel_xpos} 0 ${-wheel_r+0.151}" rpy="0 0 0" />
-      <geometry>
-        <box size="0.398 0.268 0.160"/>
-      </geometry>
+	    <origin xyz="${-wheel_xpos} 0 ${-wheel_r+0.151}" rpy="0 0 0" />
+        <geometry>
+          <box size="0.398 0.268 0.160"/>
+        </geometry>
     </collision>
     <collision>
       <origin xyz="${-wheel_xpos-0.026} 0 ${-wheel_r+0.248}" rpy="0 0 0" />
@@ -141,8 +141,8 @@
   <!-- Fixed offset from the floor to the center of the wheels -->
   <link name="base_footprint"/>
   <joint name="base_footprint_joint" type="fixed">
-    <parent link="base_footprint"/>
-    <child link="base_link"/>
+    <parent link="base_link"/>
+    <child link="base_footprint"/>
     <origin xyz="0 0 ${wheel_r}" rpy="0 0 0"/>
   </joint>
 
