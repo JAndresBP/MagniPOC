@@ -26,15 +26,16 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: ensure image name is lowercase
+        id: tolowercase
         run: |
           echo "IMAGE_NAME=${{ env.IMAGE_NAME }}" | tr '[:upper:]' '[:lower:]' >> $GITHUB_ENV
 
       - name: pull Docker image
         run: |
-          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
+          docker pull ${{ env.REGISTRY }}/${{ steps.tolowercase.outputs.IMAGE_NAME }}:main
 
       - name: deploy Docker image
         run: |
-          docker stop ${{ env.IMAGE_NAME }} || true
-          docker rm ${{ env.IMAGE_NAME }} || true
-          docker run -d --name ${{ env.IMAGE_NAME }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
+          docker stop ${{ steps.tolowercase.outputs.IMAGE_NAME }} || true
+          docker rm ${{ steps.tolowercase.outputs.IMAGE_NAME }} || true
+          docker run -d --name ${{ steps.tolowercase.outputs.IMAGE_NAME }} ${{ env.REGISTRY }}/${{ steps.tolowercase.outputs.IMAGE_NAME }}:main
