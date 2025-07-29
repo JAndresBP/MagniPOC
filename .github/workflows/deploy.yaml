@@ -4,7 +4,7 @@ on: [workflow_dispatch]
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: magni-poc
 
 jobs:
   deploy:
@@ -25,19 +25,19 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: ensure image name is lowercase
-        id: tolowercase
-        run: |
-          UPPERCASE_VAR=${{ env.IMAGE_NAME }}
-          LOWERCASE_VAR="${UPPERCASE_VAR,,}"
-          echo "IMAGE_NAME=${LOWERCASE_VAR}" >> $GITHUB_ENV
+      # - name: ensure image name is lowercase
+      #   id: tolowercase
+      #   run: |
+      #     UPPERCASE_VAR=${{ env.IMAGE_NAME }}
+      #     LOWERCASE_VAR="${UPPERCASE_VAR,,}"
+      #     echo "IMAGE_NAME=${LOWERCASE_VAR}" >> $GITHUB_ENV
 
       - name: pull Docker image
         run: |
-          docker pull ${{ env.REGISTRY }}/${{ steps.tolowercase.outputs.IMAGE_NAME }}:main
+          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
 
       - name: deploy Docker image
         run: |
-          docker stop ${{ steps.tolowercase.outputs.IMAGE_NAME }} || true
-          docker rm ${{ steps.tolowercase.outputs.IMAGE_NAME }} || true
-          docker run -d --name ${{ steps.tolowercase.outputs.IMAGE_NAME }} ${{ env.REGISTRY }}/${{ steps.tolowercase.outputs.IMAGE_NAME }}:main
+          docker stop ${{ env.IMAGE_NAME }} || true
+          docker rm ${{ env.IMAGE_NAME }} || true
+          docker run -d --name ${{ env.IMAGE_NAME }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
