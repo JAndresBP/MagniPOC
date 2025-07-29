@@ -31,13 +31,15 @@ RUN apt-get install -y python3-pip \
     webots \
     ros-jazzy-webots-ros2 \
     ros-jazzy-rviz2 \
+    ros-jazzy-ros2-control \
+    ros-jazzy-ros2-controllers \
     ros-jazzy-nav2-bringup \
     ros-jazzy-cartographer-ros \
     ros-jazzy-teleop-twist-keyboard
 
-ENV SHELL /bin/bash
-ENV NVIDIA_VISIBLE_DEVICES ${NVIDIA_VISIBLE_DEVICES:-all}
-ENV NVIDIA_DRIVER_CAPABILITIES ${NVIDIA_DRIVER_CAPABILITIES:-all}
+ENV SHELL=/bin/bash
+ENV NVIDIA_VISIBLE_DEVICES=${NVIDIA_VISIBLE_DEVICES:-all}
+ENV NVIDIA_DRIVER_CAPABILITIES=${NVIDIA_DRIVER_CAPABILITIES:-all}
 
 WORKDIR /home/ws/
 # ********************************************************
