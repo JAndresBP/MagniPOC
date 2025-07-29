@@ -4,7 +4,7 @@ on: [workflow_dispatch]
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository | lower }}
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   deploy:
@@ -24,6 +24,10 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ensure image name is lowercase
+        run: |
+          echo "IMAGE_NAME=${{ env.IMAGE_NAME }}" | tr '[:upper:]' '[:lower:]' >> $GITHUB_ENV
 
       - name: pull Docker image
         run: |
