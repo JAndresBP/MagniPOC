@@ -1,0 +1,3 @@
+[submodule "src/ubiquity_motor_ros2"]
+	path = src/ubiquity_motor_ros2
+	url = git@github.com:JAndresBP/ubiquity_motor_ros2.git
