@@ -1,4 +1,4 @@
-FROM arm64v8/ros:jazzy-ros-core
+FROM arm64v8/ros:jazzy
 
 RUN apt-get update && apt-get upgrade -y
 
