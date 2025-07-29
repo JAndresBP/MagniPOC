@@ -28,7 +28,7 @@ jobs:
       - name: ensure image name is lowercase
         id: tolowercase
         run: |
-          echo "IMAGE_NAME=${{ env.IMAGE_NAME,, }}" >> ${GITHUB_ENV}
+          echo "IMAGE_NAME=${env.IMAGE_NAME,,}" >>${GITHUB_ENV}
 
       - name: pull Docker image
         run: |
