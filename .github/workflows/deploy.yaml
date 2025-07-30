@@ -30,7 +30,7 @@ jobs:
         env:
           IMAGE_NAME_UC: ${{ env.IMAGE_NAME }}
         run: |
-          echo "IMAGE_NAME=${IMAGE_NAME_UC,,}" >> ${GITHUB_ENV}
+          echo "IMAGE_NAME=${IMAGE_NAME_UC,,}" >>${GITHUB_ENV}
 
       - name: pull Docker image
         run: |
