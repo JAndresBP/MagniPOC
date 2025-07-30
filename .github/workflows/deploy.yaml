@@ -38,6 +38,6 @@ jobs:
 
       - name: deploy Docker image
         run: |
-          docker stop ${{ env.IMAGE_NAME_LC }} || true
-          docker rm ${{ env.IMAGE_NAME_LC }} || true
-          docker run -d --name ${{ env.IMAGE_NAME_LC }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LC }}:main
+          docker stop magnipoc || true
+          docker rm magnipoc || true
+          docker run -d --name magnipoc ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LC }}:main
