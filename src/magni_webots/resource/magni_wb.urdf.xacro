@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 <robot name="magni" xmlns:xacro="http://wiki.ros.org/xacro">
     <webots>
+        <device reference="camera1" type="Camera">
+            <ros>
+                <topicName>/rpicam</topicName>
+                <alwaysOn>true</alwaysOn>
+            </ros>
+        </device>
         <plugin type="magni_driver::MagniDriver" />
     </webots>
     <xacro:include filename="$(find magni_description)/urdf/magni.urdf.xacro" />

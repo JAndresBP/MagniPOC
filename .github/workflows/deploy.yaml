@@ -15,6 +15,10 @@ jobs:
       packages: read
 
     steps:
+      - uses: actions/checkout@v4
+        with:
+            sparse-checkout: scripts
+
       - name: Log in to the Container Registry
         uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
         with:
@@ -35,6 +39,4 @@ jobs:
 
       - name: deploy Docker image
         run: |
-          docker stop magnipoc || true
-          docker rm magnipoc || true
-          docker run -d --name magnipoc ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LC }}:main
+          ./scripts/run-container.sh ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LC }}:main

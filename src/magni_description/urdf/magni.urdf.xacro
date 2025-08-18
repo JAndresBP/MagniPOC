@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="magni">
 
-  <xacro:arg name="sonars_installed" default="true"/>
+  <xacro:arg name="sonars_installed" default="false"/>
   <xacro:property name="sonars_installed" value="$(arg sonars_installed)"/>
 
   <xacro:arg name="shell_installed" default="false"/>
@@ -10,10 +10,10 @@
   <xacro:arg name="tower_installed" default="false"/>
   <xacro:property name="tower_installed" value="$(arg tower_installed)"/>
 
-  <xacro:arg name="camera_extrinsics_file" default=""/>
+  <xacro:arg name="camera_extrinsics_file" default="extrinsics/camera_extrinsics_forward.yaml"/>
   <xacro:property name="camera_extrinsics_file" value="$(arg camera_extrinsics_file)"/>
 
-  <xacro:arg name="lidar_extrinsics_file" default=""/>
+  <xacro:arg name="lidar_extrinsics_file" default="extrinsics/lidar_extrinsics_top_plate_center.yaml"/>
   <xacro:property name="lidar_extrinsics_file" value="$(arg lidar_extrinsics_file)"/>
   
   <xacro:property name="wheel_r" value="0.1" />

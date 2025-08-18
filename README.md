@@ -1,0 +1,4 @@
+# MAGNI POC
+
+## Prepare RPI
+

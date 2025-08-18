@@ -19,9 +19,9 @@
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 ${pi/2}" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <box size="0.03 0.026 0.016"/>
+          <box size="0.016 0.026 0.03"/>
         </geometry>
       </collision>
     </link>
@@ -33,11 +33,8 @@
       <child link="${name}_sensor"/>
       <origin xyz="0.005 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
     </joint>
-
-    <!-- Gazebo sensor plugin. Gazebo sensor is attached to camera link (${name}) but publishes its messages to ${name}_sensor frame. -->
-    <gazebo reference="${name}">
+    <gazebo reference="${name}_sensor">
       <sensor type="camera" name="camera1">
-        <visualize>false</visualize>
         <update_rate>30.0</update_rate>
         <camera name="raspi_camera">
           <horizontal_fov>1.086</horizontal_fov>
@@ -51,21 +48,6 @@
             <far>300</far>
           </clip>
         </camera>
-        <!-- Gazebo-ROS interface plugin -->
-        <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-          <alwaysOn>true</alwaysOn>
-          <updateRate>0.0</updateRate>
-          <cameraName></cameraName>
-          <imageTopicName>${name}_node/image</imageTopicName>
-          <cameraInfoTopicName>${name}_node/camera_info</cameraInfoTopicName>
-          <frameName>${name}_sensor</frameName>
-          <hackBaseline>0.07</hackBaseline>
-          <distortionK1>0.0</distortionK1>
-          <distortionK2>0.0</distortionK2>
-          <distortionK3>0.0</distortionK3>
-          <distortionT1>0.0</distortionT1>
-          <distortionT2>0.0</distortionT2>
-        </plugin>
       </sensor>
     </gazebo>
 
