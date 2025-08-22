@@ -9,6 +9,7 @@ from webots_ros2_driver.webots_launcher import WebotsLauncher
 from webots_ros2_driver.urdf_spawner import URDFSpawner,get_webots_driver_node
 from webots_ros2_driver.webots_controller import WebotsController
 
+
 def get_robot_spawner(*args):
     #magni_description_pkg_share = get_package_share_directory('magni_description')
     # magni_xacro_path = get_package_share_path('magni_description') / 'urdf' / 'magni.urdf.xacro'

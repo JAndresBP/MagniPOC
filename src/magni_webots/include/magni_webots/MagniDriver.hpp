@@ -8,7 +8,7 @@
 #include "geometry_msgs/msg/twist.hpp"
 #include "rclcpp/rclcpp.hpp"
 
-namespace magni_driver {
+namespace magni_webots {
     class MagniDriver : public webots_ros2_driver::PluginInterface {
         public:
             void step() override;

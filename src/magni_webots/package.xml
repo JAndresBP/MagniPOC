@@ -11,6 +11,9 @@
 
   <depend>rclcpp</depend>
   <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>image_transport</depend>
   <depend>pluginlib</depend>
   <depend>webots_ros2_driver</depend>
   <depend>magni_description</depend>
