@@ -3,8 +3,6 @@
 
 #include <string>
 #include <vector>
-#include <cstddef>
-#include <rclcpp/rclcpp.hpp>
 
 namespace video_recorder {
     class VideoRecorder {
@@ -15,11 +13,10 @@ namespace video_recorder {
             virtual ~VideoRecorder();
         
         protected:
-            VideoRecorder(std::string topic);
+            VideoRecorder();
 
         private:
-            std::string topic_;
-            std::vector<std::byte> input_buffer_;
+            std::vector<unsigned char> input_buffer_;
     };
 }
 

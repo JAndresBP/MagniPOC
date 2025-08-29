@@ -6,9 +6,7 @@ RUN apt-get install -y python3-pip \
     ros-jazzy-ros2-control \
     ros-jazzy-ros2-controllers \
     ros-jazzy-nav2-bringup \
-    ros-jazzy-cartographer-ros \
-    ros-jazzy-teleop-twist-keyboard \
-    ros-jazzy-image-transport-plugins
+    ros-jazzy-cartographer-ros
 
 RUN mkdir -p /home/ws/src
 WORKDIR /home/ws

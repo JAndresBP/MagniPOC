@@ -1,26 +1,19 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-
-    <transmission name="left_wheel_transmission">
-        <type>transmission_interface/SimpleTransmission</type>
-        <joint name="left_wheel_joint">
-            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-        </joint>
-        <actuator name="left_wheel_actuator">
-            <mechanicalReduction>1</mechanicalReduction>
-            <hardwareInterface>VelocityJointInterface</hardwareInterface>
-        </actuator>
-    </transmission>
-
-    <transmission name="right_wheel_transmission">
-        <type>transmission_interface/SimpleTransmission</type>
-        <joint name="right_wheel_joint">
-            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-        </joint>
-        <actuator name="right_wheel_actuator">
-            <mechanicalReduction>1</mechanicalReduction>
-            <hardwareInterface>VelocityJointInterface</hardwareInterface>
-        </actuator>
-    </transmission>
-
+<ros2_control name="magniBot" type="system">
+    <hardware>
+        <plugin>ubiquity_motor_ros2/MotorHardware</plugin>
+    <hardware>
+    <joint name="$left_wheel_joint">
+        <command_interface name="velocity"/>
+        <state_interface name="position"/>
+        <state_interface name="effort"/>
+      </joint>
+    <joint name="$right_wheel_joint">
+        <command_interface name="velocity"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+    </joint>
+</ros2_control>
 </robot>

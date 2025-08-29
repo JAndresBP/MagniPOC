@@ -15,24 +15,61 @@ find_package(ament_cmake REQUIRED)
 # further dependencies manually.
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(image_transport REQUIRED)
 
-add_executable(video_recorder, src/main.cpp)
-ament_target_dependencies(video_recorder rlcpp std_msgs)
+set(executable_name ${PROJECT_NAME})
+set(library_name ${executable_name}_core)
 
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  # the following line skips the linter which checks for copyrights
-  # comment the line when a copyright and license is added to all source files
-  set(ament_cmake_copyright_FOUND TRUE)
-  # the following line skips cpplint (only works in a git repo)
-  # comment the line when this package is in a git repo and when
-  # a copyright and license is added to all source files
-  set(ament_cmake_cpplint_FOUND TRUE)
-  ament_lint_auto_find_test_dependencies()
-endif()
+add_library(
+  ${library_name} SHARED
+  src/video_recorder_subscriber.cpp
+  src/video_recorder.cpp
+  src/mjpeg_recorder.cpp
+)
+target_include_directories(
+  ${library_name} PUBLIC
+  include
+)
+ament_target_dependencies(
+  ${library_name}
+  rclcpp 
+  std_msgs
+  sensor_msgs
+  image_transport
+)
+
+add_executable(
+  ${executable_name} 
+  src/main.cpp
+)
+target_link_libraries(
+  ${executable_name}
+  ${library_name}
+)
+ament_target_dependencies(
+  ${executable_name}
+  rclcpp
+)
 
 install(TARGETS
-  video_recorder
-  DESTINATION lib/${PROJECT_NAME})
+  ${library_name}
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
+)
+
+install(TARGETS
+  ${executable_name}
+  RUNTIME DESTINATION bin
+)
+
+if(BUILD_TESTING)
+  add_subdirectory(test)
+endif()
+
+ament_export_include_directories(
+  include
+)
 
 ament_package()
