@@ -5,9 +5,16 @@
             <ros>
                 <topicName>/rpicam</topicName>
                 <alwaysOn>true</alwaysOn>
+                <imageSuffix>/image_raw</imageSuffix>
             </ros>
         </device>
-        <plugin type="magni_driver::MagniDriver" />
+        <device reference="laser_sensor" type="Ray">
+            <ros>
+                <topicName>/scan</topicName>
+                <alwaysOn>true</alwaysOn>
+            </ros>
+        </device>
+        <plugin type="magni_webots::MagniDriver" />
     </webots>
     <xacro:include filename="$(find magni_description)/urdf/magni.urdf.xacro" />
 </robot>

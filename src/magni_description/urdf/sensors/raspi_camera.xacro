@@ -33,6 +33,7 @@
       <child link="${name}_sensor"/>
       <origin xyz="0.005 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
     </joint>
+    
     <gazebo reference="${name}_sensor">
       <sensor type="camera" name="camera1">
         <update_rate>30.0</update_rate>

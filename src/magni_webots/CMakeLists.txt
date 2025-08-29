@@ -14,7 +14,7 @@ find_package(webots_ros2_driver REQUIRED)
 find_package(pluginlib REQUIRED)
 
 # Export the plugin configuration file
-pluginlib_export_plugin_description_file(webots_ros2_driver magni_driver.xml)
+pluginlib_export_plugin_description_file(webots_ros2_driver magni_webots.xml)
 
 add_library(
   ${PROJECT_NAME}

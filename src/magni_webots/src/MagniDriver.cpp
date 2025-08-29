@@ -9,7 +9,7 @@
 #define HALF_DISTANCE_BETWEEN_WHEELS 0.163
 #define WHEEL_RADIUS 0.1
 
-namespace magni_driver {
+namespace magni_webots {
   void MagniDriver::init(webots_ros2_driver::WebotsNode *node, std::unordered_map<std::string, std::string> &parameters)
   {
     //get reference from webots
@@ -44,4 +44,4 @@ namespace magni_driver {
   }
 }
 #include "pluginlib/class_list_macros.hpp"
-PLUGINLIB_EXPORT_CLASS(magni_driver::MagniDriver, webots_ros2_driver::PluginInterface)
+PLUGINLIB_EXPORT_CLASS(magni_webots::MagniDriver, webots_ros2_driver::PluginInterface)
