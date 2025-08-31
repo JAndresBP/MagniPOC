@@ -14,6 +14,7 @@ namespace video_recorder {
 
     int VideoRecorderSubscriber::Subscribe(const std::string& topic_name, FrameCallback callback){
         
+        RCLCPP_INFO(this->get_logger(),"create subscriber");
         frame_callback_ = callback;
         
         image_transport::ImageTransport it{shared_from_this()};
@@ -24,8 +25,9 @@ namespace video_recorder {
     };
 
     void VideoRecorderSubscriber::ImageCallback(const sensor_msgs::msg::Image::ConstSharedPtr& msg){
-        
-        if(frame_callback_){
+        RCLCPP_INFO(this->get_logger(),"msg received");
+        if(frame_callback_ != nullptr){
+            RCLCPP_INFO(this->get_logger(),"invoke callback");
             frame_callback_(msg->data);
         }
     };

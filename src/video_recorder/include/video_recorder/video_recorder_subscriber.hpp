@@ -15,7 +15,6 @@ namespace video_recorder {
             image_transport::Subscriber sub_;
             void ImageCallback(const sensor_msgs::msg::Image::ConstSharedPtr& msg);
         public:
-            
             int Subscribe(const std::string& topic_name, FrameCallback callback);
             VideoRecorderSubscriber(rclcpp::NodeOptions& options);
             ~VideoRecorderSubscriber() = default;
