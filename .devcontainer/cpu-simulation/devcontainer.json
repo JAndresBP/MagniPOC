@@ -39,7 +39,8 @@
         "--pid=host",
         "--ipc=host",
         "-e", "DISPLAY=${env:DISPLAY}",
-        "--device", "/dev/input/js0"
+        "-v","/dev/input:/dev/input",
+        "--device-cgroup-rule", "c 13:* rmw"
     ],
      "mounts": [
         "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
