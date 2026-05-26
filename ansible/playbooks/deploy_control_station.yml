@@ -49,6 +49,9 @@
         volumes:
           - "/tmp/.X11-unix:/tmp/.X11-unix"
           - "{{ ansible_env.XAUTHORITY }}:{{ ansible_env.XAUTHORITY }}"
+          - "/dev/input:/dev/input"
+        device_cgroup_rules:
+          - "c 13:* rmw"
         env:
           DISPLAY: "{{ control_station_display }}"
           NVIDIA_VISIBLE_DEVICES: "{{ NVIDIA_VISIBLE_DEVICES | default('all') }}"
