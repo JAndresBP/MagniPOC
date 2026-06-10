@@ -17,7 +17,7 @@ RUN apt-get install -y python3-pip \
     ros-jazzy-ros2-controllers \
     ros-jazzy-teleop-twist-keyboard \
     ros-jazzy-teleop-twist-joy \
-    ros-jazzy-joy-linux \
+    ros-jazzy-joy-linux
 
 # Workspace layout
 RUN mkdir -p /home/ws/src
@@ -71,7 +71,7 @@ RUN apt-get update && apt-get upgrade -y && \
     ros-jazzy-ros2-controllers \
     ros-jazzy-teleop-twist-keyboard \
     ros-jazzy-teleop-twist-joy \
-    ros-jazzy-joy-linux \
+    ros-jazzy-joy-linux
 
 # Create workspace layout and copy artifacts from the builder stage
 WORKDIR /home/ws
