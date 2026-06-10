@@ -15,7 +15,9 @@ RUN apt-get install -y python3-pip \
     ros-jazzy-xacro \
     ros-jazzy-ros2-control \
     ros-jazzy-ros2-controllers \
-    ros-jazzy-teleop-twist-keyboard
+    ros-jazzy-teleop-twist-keyboard \
+    ros-jazzy-teleop-twist-joy \
+    ros-jazzy-joy-linux \
 
 # Workspace layout
 RUN mkdir -p /home/ws/src
@@ -27,6 +29,7 @@ COPY ./src/ydlidar_ros2_driver /home/ws/src/ydlidar_ros2_driver
 COPY ./src/ubiquity_motor_ros2 /home/ws/src/ubiquity_motor_ros2
 COPY ./src/magni_description /home/ws/src/magni_description
 COPY ./src/magni_bringup /home/ws/src/magni_bringup
+COPY ./src/magni_teleop /home/ws/src/magni_teleop
 
 # Build YDLidar SDK
 WORKDIR /home/ws/src/YDLidar-SDK
@@ -48,7 +51,8 @@ RUN . /opt/ros/jazzy/setup.sh && \
     colcon build --base-paths \
     src/magni_description \
     src/ydlidar_ros2_driver \
-    src/magni_bringup
+    src/magni_bringup \
+    src/magni_teleop
 
 # ----------------------
 # Runtime stage: smaller image based on ros-core variant
@@ -65,7 +69,9 @@ RUN apt-get update && apt-get upgrade -y && \
     ros-jazzy-xacro \
     ros-jazzy-ros2-control \
     ros-jazzy-ros2-controllers \
-    ros-jazzy-teleop-twist-keyboard
+    ros-jazzy-teleop-twist-keyboard \
+    ros-jazzy-teleop-twist-joy \
+    ros-jazzy-joy-linux \
 
 # Create workspace layout and copy artifacts from the builder stage
 WORKDIR /home/ws

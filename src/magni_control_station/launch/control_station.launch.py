@@ -15,7 +15,7 @@ def generate_launch_description() -> LaunchDescription:
     rviz_arg = LaunchConfiguration('rviz')
 
     args = [
-        DeclareLaunchArgument('teleop', default_value='true', description='Launch teleop'),
+        DeclareLaunchArgument('teleop', default_value='false', description='Launch teleop'),
         DeclareLaunchArgument('mapping', default_value='true', description='Launch mapping'),
         DeclareLaunchArgument('rviz', default_value='true', description='Launch RViz'),
     ]
