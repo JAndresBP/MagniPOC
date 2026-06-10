@@ -51,7 +51,7 @@ jobs:
           branch="${{ github.ref_name }}"
           branch=${branch:-main}
           safe_branch=$(echo "$branch" | sed 's#/##g' | sed 's/[^a-zA-Z0-9_.-]/-/g')
-          control_station_image="ghcr.io/jandresbp/magnipoc-control-station:${safe_branch}"
+          control_station_image="ghcr.io/${{ github.repository_owner }}/magnipoc-control-station:${safe_branch}"
           echo "Using image: ${control_station_image}"
           ansible-playbook -K ansible/playbooks/deploy_control_station.yml -i ansible/inventories/hosts.ini --extra-vars "control_station_image=${control_station_image}"
 
@@ -62,7 +62,7 @@ jobs:
           branch="${{ github.ref_name }}"
           branch=${branch:-main}
           safe_branch=$(echo "$branch" | sed 's#/##g' | sed 's/[^a-zA-Z0-9_.-]/-/g')
-          magnipoc_image="ghcr.io/jandresbp/magnipoc:${safe_branch}"
+          magnipoc_image="ghcr.io/${{ github.repository_owner }}/magnipoc:${safe_branch}"
           echo "Using image: ${magnipoc_image}"
           ansible-playbook ansible/playbooks/deploy_magnipoc.yml -i ansible/inventories/hosts.ini --extra-vars "target=robots magnipoc_image=${magnipoc_image}"
 
@@ -73,7 +73,7 @@ jobs:
           branch="${{ github.ref_name }}"
           branch=${branch:-main}
           safe_branch=$(echo "$branch" | sed 's#/##g' | sed 's/[^a-zA-Z0-9_.-]/-/g')
-          magnipoc_image="ghcr.io/jandresbp/magnipoc:${safe_branch}"
+          magnipoc_image="ghcr.io/${{ github.repository_owner }}/magnipoc:${safe_branch}"
           echo "Using image: ${magnipoc_image}"
           ansible-playbook ansible/playbooks/deploy_magnipoc.yml -i ansible/inventories/hosts.ini --extra-vars "target=magni1 magnipoc_image=${magnipoc_image}"
 
@@ -84,6 +84,6 @@ jobs:
           branch="${{ github.ref_name }}"
           branch=${branch:-main}
           safe_branch=$(echo "$branch" | sed 's#/##g' | sed 's/[^a-zA-Z0-9_.-]/-/g')
-          magnipoc_image="ghcr.io/jandresbp/magnipoc:${safe_branch}"
+          magnipoc_image="ghcr.io/${{ github.repository_owner }}/magnipoc:${safe_branch}"
           echo "Using image: ${magnipoc_image}"
           ansible-playbook ansible/playbooks/deploy_magnipoc.yml -i ansible/inventories/hosts.ini --extra-vars "target=magni2 magnipoc_image=${magnipoc_image}"
