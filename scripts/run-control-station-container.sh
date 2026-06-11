@@ -5,6 +5,9 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
+docker stop control-station || true
+docker rm control-station || true
+
 docker run -it \
     --network host \
     -e DISPLAY=$DISPLAY \

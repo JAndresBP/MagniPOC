@@ -78,6 +78,9 @@ WORKDIR /home/ws
 COPY --from=builder /home/ws/install /home/ws/install
 # Copy any system-installed files (e.g. YDLidar SDK installed into /usr/local)
 COPY --from=builder /usr/local /usr/local
+#Copy scripts
+COPY ./scripts/run-magni-container.sh /run-magni-container.sh
+RUN chmod +x /run-magni-container.sh
 
 # Ensure the container entrypoint sources the workspace install
 RUN sed --in-place --expression \
