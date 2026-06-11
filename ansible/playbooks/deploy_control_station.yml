@@ -37,7 +37,7 @@
         pull: true
         state: started
         restart_policy: unless-stopped
-        detach: false
+        detach: true
         network_mode: host
         # Enable NVIDIA rendering support when available on host
         runtime: nvidia
