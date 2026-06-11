@@ -37,7 +37,7 @@ def generate_launch_description() -> LaunchDescription:
     )
 
     # RViz using magni_control_station config
-    rviz_config = os.path.join(get_package_share_directory('magni_control_station'), 'config', 'control_station.rviz')
+    rviz_config = os.path.join(get_package_share_directory('magni_control_station'), 'config', 'basicconf.rviz')
     rviz_node = Node(
         package='rviz2', executable='rviz2', name='rviz2', output='screen',
         arguments=['--display-config=' + rviz_config],
