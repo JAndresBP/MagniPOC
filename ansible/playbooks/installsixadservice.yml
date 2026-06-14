@@ -57,33 +57,39 @@
         chdir: "{{ sixad_dest }}"
 
     - name: Install sixad using checkinstall
-      command: checkinstall -y --pkgname=sixad --pkgversion="1.0" --backup=no --deldoc=yes --fstrans=no --default
+      command: make install
       args:
         chdir: "{{ sixad_dest }}"
 
-    - name: Ensure sixad service file exists
-      copy:
-        dest: /etc/systemd/system/sixad.service
-        content: |
-          [Unit]
-          Description=Sixad Bluetooth Daemon (xboxdrv controller daemon)
-          After=bluetooth.service
+    # - name: Ensure sixad service file exists
+    #   copy:
+    #     dest: /etc/systemd/system/sixad.service
+    #     content: |
+    #       [Unit]
+    #       Description=Sixad Bluetooth Daemon (xboxdrv controller daemon)
+    #       After=bluetooth.service
 
-          [Service]
-          Type=forking
-          ExecStart=/usr/sbin/sixad --daemon
-          ExecStop=/bin/kill -TERM $MAINPID
-          Restart=on-failure
+    #       [Service]
+    #       Type=forking
+    #       ExecStart=/usr/sbin/sixad --daemon
+    #       ExecStop=/bin/kill -TERM $MAINPID
+    #       Restart=on-failure
 
-          [Install]
-          WantedBy=multi-user.target
-        owner: root
-        group: root
-        mode: '0644'
+    #       [Install]
+    #       WantedBy=multi-user.target
+    #     owner: root
+    #     group: root
+    #     mode: '0644'
 
     - name: Reload systemd daemon
       systemd:
         daemon_reload: yes
+
+    - name: Enable and start bluetooth service
+      systemd:
+        name: bluetooth.service
+        enabled: yes
+        state: started
 
     - name: Enable and start sixad service
       systemd:

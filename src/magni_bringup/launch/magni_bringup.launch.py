@@ -12,10 +12,11 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description() -> LaunchDescription:
 	# Launch arguments
 	enable_lidar = LaunchConfiguration('enable_lidar')
-	
+	teleop_arg = LaunchConfiguration('teleop')
+
 	arguments = [
-		DeclareLaunchArgument('enable_lidar', default_value='true',
-							  description='Whether to launch LIDAR driver'),
+		DeclareLaunchArgument('enable_lidar', default_value='true',description='Whether to launch LIDAR driver'),
+		DeclareLaunchArgument('teleop', default_value='true', description='Launch teleop')
 	]
 
 	# Include the motors launch from ubiquity_motor_ros2
@@ -37,10 +38,18 @@ def generate_launch_description() -> LaunchDescription:
 		}.items(),
 		condition=IfCondition(enable_lidar)
 	)
+    
+	teleop_share = get_package_share_directory('magni_teleop')
+	teleop_launch = os.path.join(teleop_share, 'launch', 'joy_teleop.launch.py')
+	include_teleop = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(teleop_launch),
+        condition=IfCondition(teleop_arg)
+    )
 
 	ld = LaunchDescription(arguments)
 	ld.add_action(include_motors)
 	ld.add_action(include_ydlidar)
+	ld.add_action(include_teleop)
 
 	return ld
 
