@@ -8,3 +8,9 @@
 	path = src/ydlidar_ros2_driver
 	url = git@github.com:JAndresBP/ydlidar_ros2_driver.git
 	branch = humble
+[submodule "src/franka_description"]
+	path = src/franka_description
+	url = https://github.com/frankarobotics/franka_description.git
+[submodule "src/rebotarm_ros2"]
+	path = src/rebotarm_ros2
+	url = https://github.com/Seeed-Projects/reBotArmController_ROS2.git
