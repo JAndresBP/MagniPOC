@@ -149,7 +149,7 @@ def generate_launch_description():
     magni_webots_pkg_share = get_package_share_directory('magni_webots')
     
     # Launch Webots simulation environment
-    world_file = os.path.join(magni_webots_pkg_share, 'worlds', 'break_room.wbt')
+    world_file = os.path.join(magni_webots_pkg_share, 'worlds', 'tech_office.wbt')
 
     webots_launcher = WebotsLauncher(
         world=world_file,
