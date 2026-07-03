@@ -12,7 +12,11 @@ ARGUMENTS = [
     DeclareLaunchArgument('shell_installed',default_value='false',choices=['true','false'], description='shell'),
     DeclareLaunchArgument('sonars_installed',default_value='false',choices=['true','false'], description='sonars'),
     DeclareLaunchArgument('camera_extrinsics_file',default_value='extrinsics/camera_extrinsics_forward.yaml', description='path to camera extrinsics file'),
-    DeclareLaunchArgument('lidar_extrinsics_file',default_value='extrinsics/lidar_extrinsics_top_plate_center.yaml', description='path to lidar extrinsics file')
+    DeclareLaunchArgument('lidar_extrinsics_file',default_value='extrinsics/lidar_extrinsics_top_plate_center.yaml', description='path to lidar extrinsics file'),
+    DeclareLaunchArgument('arm_installed',default_value='false',choices=['true','false'], description='mount an arm'),
+    DeclareLaunchArgument('arm_family',default_value='rebotarm',choices=['rebotarm','franka'], description='which arm to mount'),
+    DeclareLaunchArgument('robot_type',default_value='fr3', description='franka arm model, only used when arm_family=franka (fr3, fer, fp3, ...)'),
+    DeclareLaunchArgument('arm_hand',default_value='true',choices=['true','false'], description='mount the franka hand gripper, only used when arm_family=franka')
 ]
 
 def generate_launch_description():
@@ -29,7 +33,11 @@ def generate_launch_description():
                             ' shell_installed:=', LaunchConfiguration('shell_installed'),
                             ' sonars_installed:=', LaunchConfiguration('sonars_installed'),
                             ' lidar_extrinsics_file:=', LaunchConfiguration('lidar_extrinsics_file'),
-                            ' camera_extrinsics_file:=', LaunchConfiguration('camera_extrinsics_file')
+                            ' camera_extrinsics_file:=', LaunchConfiguration('camera_extrinsics_file'),
+                            ' arm_installed:=', LaunchConfiguration('arm_installed'),
+                            ' arm_family:=', LaunchConfiguration('arm_family'),
+                            ' robot_type:=', LaunchConfiguration('robot_type'),
+                            ' arm_hand:=', LaunchConfiguration('arm_hand')
                             ]),
                 value_type=str
             ),

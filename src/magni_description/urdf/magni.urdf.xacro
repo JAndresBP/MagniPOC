@@ -12,6 +12,19 @@
   <xacro:arg name="tower_installed" default="false"/>
   <xacro:property name="tower_installed" value="$(arg tower_installed)"/>
 
+  <xacro:arg name="arm_installed" default="false"/>
+  <xacro:property name="arm_installed" value="$(arg arm_installed)"/>
+
+  <!-- Which arm to mount when arm_installed is true: "rebotarm" (Seeed reBot
+       Arm B601-DM, default; much lighter/smaller, fits a mobile base like
+       Magni) or "franka" (Franka Research 3; heavier, larger workspace). -->
+  <xacro:arg name="arm_family" default="rebotarm"/>
+  <xacro:property name="arm_family" value="$(arg arm_family)"/>
+
+  <!-- franka-specific options, only used when arm_family == 'franka' -->
+  <xacro:arg name="robot_type" default="fr3"/>
+  <xacro:arg name="arm_hand" default="true"/>
+
   <xacro:arg name="camera_extrinsics_file" default="extrinsics/camera_extrinsics_forward.yaml"/>
   <xacro:property name="camera_extrinsics_file" value="$(arg camera_extrinsics_file)"/>
 
@@ -266,6 +279,55 @@
       <origin xyz="${lidar_extrinsics['x']} ${lidar_extrinsics['y']} ${lidar_extrinsics['z']}"
         rpy="${lidar_extrinsics['roll']} ${lidar_extrinsics['pitch']} ${lidar_extrinsics['yaw']}"/>
     </xacro:ur50_lidar>
+  </xacro:if>
+
+  <!-- Define the arm, mounted on the tower's upper shelf -->
+  <xacro:if value="${arm_installed}">
+
+    <xacro:if value="${arm_family == 'rebotarm'}">
+      <xacro:include filename="$(find magni_description)/urdf/rebotarm/reBot_B601_DM_with_gripper.xacro"/>
+      <xacro:include filename="$(find magni_description)/urdf/rebotarm.control.xacro"/>
+
+      <joint name="arm_mount_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="rebotarm_base_link"/>
+        <!-- Upper shelf sits around z=0.53 when tower_installed is true -->
+        <origin xyz="-0.1 0 0.54" rpy="0 0 0"/>
+      </joint>
+
+      <xacro:rebotarm_ros2_control name="rebotarmhw" use_mock_hardware="$(arg use_mock_hardware)"/>
+    </xacro:if>
+
+    <xacro:if value="${arm_family == 'franka'}">
+      <xacro:include filename="$(find franka_description)/robots/common/franka_robot.xacro"/>
+      <xacro:include filename="$(find magni_description)/urdf/franka_arm.control.xacro"/>
+
+      <!-- Note: xacro:franka_robot creates the "franka_mount_link" itself (as an
+           empty frame) and welds link0 to it; we only need to weld that frame
+           to base_link here, not declare the link ourselves. -->
+      <joint name="franka_mount_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="franka_mount_link"/>
+        <!-- Upper shelf sits around z=0.53 when tower_installed is true -->
+        <origin xyz="-0.1 0 0.54" rpy="0 0 0"/>
+      </joint>
+
+      <xacro:franka_robot
+        robot_type="$(arg robot_type)"
+        connected_to="franka_mount_link"
+        hand="$(arg arm_hand)"
+        ee_id="franka_hand"
+        arm_prefix=""
+        no_prefix="false"
+        gazebo="false"/>
+
+      <xacro:franka_arm_ros2_control
+        name="frankahw"
+        robot_type="$(arg robot_type)"
+        use_mock_hardware="$(arg use_mock_hardware)"
+        hand="$(arg arm_hand)"/>
+    </xacro:if>
+
   </xacro:if>
 
   <!-- Define Controller-->
