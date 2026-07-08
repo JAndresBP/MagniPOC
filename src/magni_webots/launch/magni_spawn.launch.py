@@ -46,6 +46,9 @@ def get_robot_spawner(*args):
         'arm_family': arm_family,
         'robot_type': os.environ.get('MAGNI_ARM_ROBOT_TYPE', 'fr3'),
         'arm_hand': os.environ.get('MAGNI_ARM_HAND', 'true'),
+        'torso_installed': os.environ.get('MAGNI_TORSO_INSTALLED', 'true'),
+        'torso_left_accessory': os.environ.get('MAGNI_TORSO_LEFT', 'tray'),
+        'torso_head_accessory': os.environ.get('MAGNI_TORSO_HEAD', 'screen'),
     }).toxml()
 
     magni_webots_pkg_share = get_package_share_directory('magni_webots')
@@ -116,6 +119,9 @@ def get_robot_spawner(*args):
             'arm_family': arm_family,
             'robot_type': os.environ.get('MAGNI_ARM_ROBOT_TYPE', 'fr3'),
             'arm_hand': os.environ.get('MAGNI_ARM_HAND', 'true'),
+            'torso_installed': os.environ.get('MAGNI_TORSO_INSTALLED', 'true'),
+            'torso_left_accessory': os.environ.get('MAGNI_TORSO_LEFT', 'tray'),
+            'torso_head_accessory': os.environ.get('MAGNI_TORSO_HEAD', 'screen'),
         }.items()
     )
      

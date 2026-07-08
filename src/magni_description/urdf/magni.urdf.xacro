@@ -12,6 +12,18 @@
   <xacro:arg name="tower_installed" default="false"/>
   <xacro:property name="tower_installed" value="$(arg tower_installed)"/>
 
+  <!-- Humanoid torso replacing the tower (use one or the other, not both):
+       right/left shoulder mounts plus a head mount. See torso.urdf.xacro. -->
+  <xacro:arg name="torso_installed" default="false"/>
+  <xacro:property name="torso_installed" value="$(arg torso_installed)"/>
+
+  <!-- 'tray' welds a serving tray on the left shoulder; 'none' leaves the
+       mount free (e.g. for a future second arm). -->
+  <xacro:arg name="torso_left_accessory" default="tray"/>
+
+  <!-- 'screen' | 'sensor_head' | 'none' on the head mount -->
+  <xacro:arg name="torso_head_accessory" default="screen"/>
+
   <xacro:arg name="arm_installed" default="false"/>
   <xacro:property name="arm_installed" value="$(arg arm_installed)"/>
 
@@ -281,19 +293,40 @@
     </xacro:ur50_lidar>
   </xacro:if>
 
-  <!-- Define the arm, mounted on the tower's upper shelf -->
+  <!-- Humanoid torso (replaces the tower) -->
+  <xacro:if value="${torso_installed}">
+    <xacro:include filename="$(find magni_description)/urdf/torso.urdf.xacro"/>
+    <xacro:magni_torso parent="base_link"
+      left_accessory="$(arg torso_left_accessory)"
+      head_accessory="$(arg torso_head_accessory)"/>
+  </xacro:if>
+
+  <!-- Define the arm: on the torso's right shoulder when the torso is
+       installed (human-like, joint1 axis normal to the robot's right side),
+       otherwise on the tower's upper shelf as before -->
   <xacro:if value="${arm_installed}">
 
     <xacro:if value="${arm_family == 'rebotarm'}">
       <xacro:include filename="$(find magni_description)/urdf/rebotarm/reBot_B601_DM_with_gripper.xacro"/>
       <xacro:include filename="$(find magni_description)/urdf/rebotarm.control.xacro"/>
 
-      <joint name="arm_mount_joint" type="fixed">
-        <parent link="base_link"/>
-        <child link="rebotarm_base_link"/>
-        <!-- Upper shelf sits around z=0.53 when tower_installed is true -->
-        <origin xyz="-0.1 0 0.54" rpy="0 0 0"/>
-      </joint>
+      <xacro:if value="${torso_installed}">
+        <!-- The mount frame already points +Z to the robot's right, so the
+             arm bolts on flat and joint1 spins about that axis. -->
+        <joint name="arm_mount_joint" type="fixed">
+          <parent link="torso_right_arm_mount"/>
+          <child link="rebotarm_base_link"/>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+        </joint>
+      </xacro:if>
+      <xacro:unless value="${torso_installed}">
+        <joint name="arm_mount_joint" type="fixed">
+          <parent link="base_link"/>
+          <child link="rebotarm_base_link"/>
+          <!-- Upper shelf sits around z=0.53 when tower_installed is true -->
+          <origin xyz="-0.1 0 0.54" rpy="0 0 0"/>
+        </joint>
+      </xacro:unless>
 
       <xacro:rebotarm_ros2_control name="rebotarmhw" use_mock_hardware="$(arg use_mock_hardware)"/>
     </xacro:if>
