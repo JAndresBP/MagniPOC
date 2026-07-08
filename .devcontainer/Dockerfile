@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y python3-pip \
     ros-jazzy-rviz2 \
     ros-jazzy-ros2-control \
     ros-jazzy-ros2-controllers \
+    ros-jazzy-navigation2 \
     ros-jazzy-nav2-bringup \
     ros-jazzy-cartographer-ros \
     ros-jazzy-teleop-twist-keyboard \

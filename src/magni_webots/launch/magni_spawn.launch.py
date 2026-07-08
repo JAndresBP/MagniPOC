@@ -1,6 +1,8 @@
 import os
+import tempfile
 import launch
 import xacro
+import yaml
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, RegisterEventHandler, DeclareLaunchArgument, ExecuteProcess
 from launch.event_handlers import OnProcessExit
@@ -16,20 +18,71 @@ from launch_ros.substitutions import FindPackageShare
 from launch.substitutions import LaunchConfiguration
 from launch.conditions import IfCondition, UnlessCondition
 
+
+def _deep_merge(base, overlay):
+    merged = dict(base)
+    for key, value in overlay.items():
+        if key in merged and isinstance(merged[key], dict) and isinstance(value, dict):
+            merged[key] = _deep_merge(merged[key], value)
+        else:
+            merged[key] = value
+    return merged
+
+
 def get_robot_spawner(*args):
     use_sim_time = LaunchConfiguration("use_sim_time")
         
     magni_description_pkg_share = get_package_share_directory('magni_description')
     magni_xacro_path = get_package_share_path('magni_description') / 'urdf' / 'magni.urdf.xacro'
-    magni_description = xacro.process_file(magni_xacro_path, mappings = {'use_mock_hardware': 'True'}).toxml()
-    
+    # xacro is processed immediately (no LaunchContext exists yet at this point in
+    # the launch description, so LaunchConfiguration substitutions can't be used
+    # here) -- read overrides from the environment instead, set by the calling
+    # shell script (see scripts/launch-webots-simulation.sh).
+    arm_family = os.environ.get('MAGNI_ARM_FAMILY', 'rebotarm')
+
+    magni_description = xacro.process_file(magni_xacro_path, mappings = {
+        'use_mock_hardware': 'True',
+        'arm_installed': os.environ.get('MAGNI_ARM_INSTALLED', 'true'),
+        'arm_family': arm_family,
+        'robot_type': os.environ.get('MAGNI_ARM_ROBOT_TYPE', 'fr3'),
+        'arm_hand': os.environ.get('MAGNI_ARM_HAND', 'true'),
+        'torso_installed': os.environ.get('MAGNI_TORSO_INSTALLED', 'true'),
+        'torso_left_accessory': os.environ.get('MAGNI_TORSO_LEFT', 'tray'),
+        'torso_head_accessory': os.environ.get('MAGNI_TORSO_HEAD', 'screen'),
+    }).toxml()
+
     magni_webots_pkg_share = get_package_share_directory('magni_webots')
     magni_wb_xacro_path = os.path.join(magni_webots_pkg_share,'resource', 'magni_wb.urdf.xacro')
     node_remover_xacro_path = os.path.join(magni_webots_pkg_share,'resource', 'node_remover.urdf.xacro')
-    
+    # Only one arm is ever mounted at a time, so only that arm's controller yaml
+    # gets merged in -- the other family's joints don't exist in the URDF and a
+    # controller referencing missing joints would fail to activate.
+    arm_controllers_file = os.path.join(
+        magni_webots_pkg_share, 'resource',
+        'rebotarm_controllers.yaml' if arm_family == 'rebotarm' else 'franka_arm_controllers.yaml'
+    )
+
     ubiquity_motor_pkg_share = get_package_share_directory('ubiquity_motor_ros2')
     robot_controllers = os.path.join(ubiquity_motor_pkg_share, "cfg", "conf.yaml")
-    
+
+    # WebotsController only ever emits a single "--params-file" flag no matter how
+    # many file paths are in `parameters=[...]` (see webots_ros2_driver's
+    # WebotsController), so passing both yaml files separately produces a
+    # malformed command line and the controller process dies on startup. Merge
+    # them into one generated file instead.
+    merged_controller_params = {}
+    for params_path in (robot_controllers, arm_controllers_file):
+        with open(params_path) as f:
+            data = yaml.safe_load(f) or {}
+        merged_controller_params = _deep_merge(merged_controller_params, data)
+
+    merged_params_file = tempfile.NamedTemporaryFile(
+        mode='w', prefix='magni_webots_controllers_', suffix='.yaml', delete=False
+    )
+    yaml.safe_dump(merged_controller_params, merged_params_file)
+    merged_params_file.close()
+    robot_controllers = merged_params_file.name
+
     robot_spawner_node = URDFSpawner(
         name='magni',
         robot_description=magni_description,
@@ -61,7 +114,14 @@ def get_robot_spawner(*args):
     magni_description_include = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(magni_description_launch),
         launch_arguments={
-            'use_mock_hardware': use_sim_time
+            'use_mock_hardware': use_sim_time,
+            'arm_installed': os.environ.get('MAGNI_ARM_INSTALLED', 'true'),
+            'arm_family': arm_family,
+            'robot_type': os.environ.get('MAGNI_ARM_ROBOT_TYPE', 'fr3'),
+            'arm_hand': os.environ.get('MAGNI_ARM_HAND', 'true'),
+            'torso_installed': os.environ.get('MAGNI_TORSO_INSTALLED', 'true'),
+            'torso_left_accessory': os.environ.get('MAGNI_TORSO_LEFT', 'tray'),
+            'torso_head_accessory': os.environ.get('MAGNI_TORSO_HEAD', 'screen'),
         }.items()
     )
      
@@ -80,14 +140,51 @@ def get_robot_spawner(*args):
             {'use_sim_time': use_sim_time},
         ],
     )
-    
+
+    arm_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        output="screen",
+        arguments=["arm_controller"],
+        parameters=[
+            {'use_sim_time': use_sim_time},
+        ],
+    )
+
     delay_joint_state_broadcaster_after_robot_controller_spawner = RegisterEventHandler(
         event_handler=OnProcessExit(
             target_action=robot_controller_spawner,
             on_exit=[joint_state_broadcaster_spawner],
         )
     )
-    
+
+    delay_arm_controller_after_joint_state_broadcaster_spawner = RegisterEventHandler(
+        event_handler=OnProcessExit(
+            target_action=joint_state_broadcaster_spawner,
+            on_exit=[arm_controller_spawner],
+        )
+    )
+
+    # Only the reBot arm's gripper is wired up as a separate controller so far --
+    # gripper_controller.ros__parameters only exists in rebotarm_controllers.yaml.
+    extra_actions = []
+    if arm_family == 'rebotarm':
+        gripper_controller_spawner = Node(
+            package="controller_manager",
+            executable="spawner",
+            output="screen",
+            arguments=["gripper_controller"],
+            parameters=[
+                {'use_sim_time': use_sim_time},
+            ],
+        )
+        extra_actions.append(RegisterEventHandler(
+            event_handler=OnProcessExit(
+                target_action=arm_controller_spawner,
+                on_exit=[gripper_controller_spawner],
+            )
+        ))
+
     waiting_nodes = WaitForControllerConnection(
         target_driver=magni_driver, nodes_to_start=robot_controller_spawner
     )
@@ -138,8 +235,9 @@ def get_robot_spawner(*args):
         ),
         waiting_nodes,
         delay_joint_state_broadcaster_after_robot_controller_spawner,
+        delay_arm_controller_after_joint_state_broadcaster_spawner,
         magni_description_include
-    ]    
+    ] + extra_actions
 
 def generate_launch_description():
     use_webots_gui_arg = DeclareLaunchArgument("use_webots_gui", default_value='false')
@@ -149,7 +247,7 @@ def generate_launch_description():
     magni_webots_pkg_share = get_package_share_directory('magni_webots')
     
     # Launch Webots simulation environment
-    world_file = os.path.join(magni_webots_pkg_share, 'worlds', 'break_room.wbt')
+    world_file = os.path.join(magni_webots_pkg_share, 'worlds', 'tech_office.wbt')
 
     webots_launcher = WebotsLauncher(
         world=world_file,

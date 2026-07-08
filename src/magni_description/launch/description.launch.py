@@ -12,7 +12,14 @@ ARGUMENTS = [
     DeclareLaunchArgument('shell_installed',default_value='false',choices=['true','false'], description='shell'),
     DeclareLaunchArgument('sonars_installed',default_value='false',choices=['true','false'], description='sonars'),
     DeclareLaunchArgument('camera_extrinsics_file',default_value='extrinsics/camera_extrinsics_forward.yaml', description='path to camera extrinsics file'),
-    DeclareLaunchArgument('lidar_extrinsics_file',default_value='extrinsics/lidar_extrinsics_top_plate_center.yaml', description='path to lidar extrinsics file')
+    DeclareLaunchArgument('lidar_extrinsics_file',default_value='extrinsics/lidar_extrinsics_top_plate_center.yaml', description='path to lidar extrinsics file'),
+    DeclareLaunchArgument('torso_installed',default_value='false',choices=['true','false'], description='humanoid torso replacing the tower'),
+    DeclareLaunchArgument('torso_left_accessory',default_value='tray',choices=['tray','none'], description='left shoulder accessory'),
+    DeclareLaunchArgument('torso_head_accessory',default_value='screen',choices=['screen','sensor_head','none'], description='head mount accessory'),
+    DeclareLaunchArgument('arm_installed',default_value='false',choices=['true','false'], description='mount an arm'),
+    DeclareLaunchArgument('arm_family',default_value='rebotarm',choices=['rebotarm','franka'], description='which arm to mount'),
+    DeclareLaunchArgument('robot_type',default_value='fr3', description='franka arm model, only used when arm_family=franka (fr3, fer, fp3, ...)'),
+    DeclareLaunchArgument('arm_hand',default_value='true',choices=['true','false'], description='mount the franka hand gripper, only used when arm_family=franka')
 ]
 
 def generate_launch_description():
@@ -29,7 +36,14 @@ def generate_launch_description():
                             ' shell_installed:=', LaunchConfiguration('shell_installed'),
                             ' sonars_installed:=', LaunchConfiguration('sonars_installed'),
                             ' lidar_extrinsics_file:=', LaunchConfiguration('lidar_extrinsics_file'),
-                            ' camera_extrinsics_file:=', LaunchConfiguration('camera_extrinsics_file')
+                            ' camera_extrinsics_file:=', LaunchConfiguration('camera_extrinsics_file'),
+                            ' torso_installed:=', LaunchConfiguration('torso_installed'),
+                            ' torso_left_accessory:=', LaunchConfiguration('torso_left_accessory'),
+                            ' torso_head_accessory:=', LaunchConfiguration('torso_head_accessory'),
+                            ' arm_installed:=', LaunchConfiguration('arm_installed'),
+                            ' arm_family:=', LaunchConfiguration('arm_family'),
+                            ' robot_type:=', LaunchConfiguration('robot_type'),
+                            ' arm_hand:=', LaunchConfiguration('arm_hand')
                             ]),
                 value_type=str
             ),

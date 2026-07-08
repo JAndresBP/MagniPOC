@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="rebotarm_joint_interface" params="name">
+    <joint name="${name}">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- The upstream reBotArm packages control real (DAMIAO/CAN) hardware through
+       their own rebotarmcontroller node, not a ros2_control hardware_interface
+       plugin, so there is no real-hardware plugin to wire up here yet. When
+       use_mock_hardware is false we fall back to mock_components/GenericSystem
+       (the same plugin the upstream rebotarm_moveit_config uses for planning),
+       which is enough to keep the URDF valid; it does not drive real hardware. -->
+  <xacro:macro name="rebotarm_ros2_control" params="name use_mock_hardware">
+    <ros2_control name="${name}" type="system">
+      <xacro:if value="${use_mock_hardware}">
+        <hardware>
+          <plugin>webots_ros2_control::Ros2ControlSystem</plugin>
+        </hardware>
+      </xacro:if>
+      <xacro:unless value="${use_mock_hardware}">
+        <hardware>
+          <plugin>mock_components/GenericSystem</plugin>
+        </hardware>
+      </xacro:unless>
+
+      <xacro:rebotarm_joint_interface name="joint1"/>
+      <xacro:rebotarm_joint_interface name="joint2"/>
+      <xacro:rebotarm_joint_interface name="joint3"/>
+      <xacro:rebotarm_joint_interface name="joint4"/>
+      <xacro:rebotarm_joint_interface name="joint5"/>
+      <xacro:rebotarm_joint_interface name="joint6"/>
+      <xacro:rebotarm_joint_interface name="gripper_joint1"/>
+      <xacro:rebotarm_joint_interface name="gripper_joint2"/>
+    </ros2_control>
+  </xacro:macro>
+</robot>

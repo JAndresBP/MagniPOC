@@ -1,0 +1,5596 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/apartment_structure/protos/Wall.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/chairs/protos/OfficeChair.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/computers/protos/Monitor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/computers/protos/Keyboard.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/plants/protos/PottedTree.proto"
+
+WorldInfo {
+  info [
+    "Large tech office world"
+    "Open space + meeting pod + bar/lounge + plant wall"
+  ]
+  title "Tech Office"
+  basicTimeStep 16
+}
+Viewpoint {
+  orientation -0.3634941985771046 0.13079417162489979 0.9223691518420076 2.500696368253614
+  position 26.471254768111297 -16.418678624558623 29.453323869800005
+}
+Background {
+  skyColor [
+    0.72 0.74 0.78
+  ]
+}
+DirectionalLight {
+  ambientIntensity 0.9
+  direction 0.4 0.3 -1
+  intensity 1.2
+}
+Floor {
+  size 32 20
+  tileSize 2 2
+  appearance PBRAppearance {
+    baseColor 0.52 0.52 0.55
+    roughness 0.95
+    metalness 0
+  }
+}
+Wall {
+  translation 0 10 0
+  name "wall N"
+  size 32 0.2 3.6
+}
+Wall {
+  translation 0 -10 0
+  name "wall S"
+  size 32 0.2 3.6
+}
+Wall {
+  translation 16 0 0
+  rotation 0 0 1 1.5708
+  name "wall E"
+  size 20 0.2 3.6
+}
+Wall {
+  translation -16 0 0
+  rotation 0 0 1 1.5708
+  name "wall W"
+  size 20 0.2 3.6
+}
+Solid {
+  translation -1.96 9.85 0
+  children [
+    Pose {
+      translation 0 0 1.8
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.8 0.18 0.12
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 7 0.1 3.6
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.8 0.06 1.7
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.95 0.8 0.15
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 1.6 0.1 1.2
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.6 0.06 1.7
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.95 0.8 0.15
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 1.6 0.1 1.2
+          }
+        }
+      ]
+    }
+  ]
+  name "red accent wall"
+}
+Solid {
+  children [
+    Pose {
+      translation 0 -3.5 3.25
+      rotation 0 1 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.75 0.76 0.78
+            roughness 0.35
+            metalness 0.9
+          }
+          geometry Cylinder {
+            height 31
+            radius 0.28
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 4 3.25
+      rotation 0 1 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.75 0.76 0.78
+            roughness 0.35
+            metalness 0.9
+          }
+          geometry Cylinder {
+            height 31
+            radius 0.28
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -10 0 2.85
+      rotation 1 0 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.75 0.76 0.78
+            roughness 0.35
+            metalness 0.9
+          }
+          geometry Cylinder {
+            height 19
+            radius 0.2
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 2.85
+      rotation 1 0 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.75 0.76 0.78
+            roughness 0.35
+            metalness 0.9
+          }
+          geometry Cylinder {
+            height 19
+            radius 0.2
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 10 0 2.85
+      rotation 1 0 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.75 0.76 0.78
+            roughness 0.35
+            metalness 0.9
+          }
+          geometry Cylinder {
+            height 19
+            radius 0.2
+          }
+        }
+      ]
+    }
+  ]
+  name "ducts"
+}
+Solid {
+  children [
+    Pose {
+      translation 3.638 -5.632 3.05
+      rotation 0 0 1 2.0944
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 3 -5.264 3.05
+      rotation 0 0 1 3.1416
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 2.362 -5.632 3.05
+      rotation 0 0 1 4.1888
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 2.362 -6.368 3.05
+      rotation 0 0 1 5.236
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 3 -6.736 3.05
+      rotation 0 0 1 6.2832
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 3.637 -6.368 3.05
+      rotation 0 0 1 7.3304
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+  ]
+  name "hex light 0"
+}
+Solid {
+  children [
+    Pose {
+      translation 3.638 0.368 3.05
+      rotation 0 0 1 2.0944
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 3 0.736 3.05
+      rotation 0 0 1 3.1416
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 2.362 0.368 3.05
+      rotation 0 0 1 4.1888
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 2.362 -0.368 3.05
+      rotation 0 0 1 5.236
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 3 -0.736 3.05
+      rotation 0 0 1 6.2832
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 3.637 -0.368 3.05
+      rotation 0 0 1 7.3304
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    PointLight {
+      attenuation 0 0 1
+      intensity 5
+      location 3 0 2.65
+      radius 14
+    }
+  ]
+  name "hex light 1"
+}
+Solid {
+  children [
+    Pose {
+      translation 3.638 6.368 3.05
+      rotation 0 0 1 2.0944
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 3 6.736 3.05
+      rotation 0 0 1 3.1416
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 2.362 6.368 3.05
+      rotation 0 0 1 4.1888
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 2.362 5.632 3.05
+      rotation 0 0 1 5.236
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 3 5.264 3.05
+      rotation 0 0 1 6.2832
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 3.637 5.632 3.05
+      rotation 0 0 1 7.3304
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+  ]
+  name "hex light 2"
+}
+Solid {
+  children [
+    Pose {
+      translation 8.637 -5.632 3.05
+      rotation 0 0 1 2.0944
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 8 -5.264 3.05
+      rotation 0 0 1 3.1416
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 7.362 -5.632 3.05
+      rotation 0 0 1 4.1888
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 7.362 -6.368 3.05
+      rotation 0 0 1 5.236
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 8 -6.736 3.05
+      rotation 0 0 1 6.2832
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 8.637 -6.368 3.05
+      rotation 0 0 1 7.3304
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    PointLight {
+      attenuation 0 0 1
+      intensity 5
+      location 8 -6 2.65
+      radius 14
+    }
+  ]
+  name "hex light 3"
+}
+Solid {
+  children [
+    Pose {
+      translation 8.637 0.368 3.05
+      rotation 0 0 1 2.0944
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 8 0.736 3.05
+      rotation 0 0 1 3.1416
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 7.362 0.368 3.05
+      rotation 0 0 1 4.1888
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 7.362 -0.368 3.05
+      rotation 0 0 1 5.236
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 8 -0.736 3.05
+      rotation 0 0 1 6.2832
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 8.637 -0.368 3.05
+      rotation 0 0 1 7.3304
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+  ]
+  name "hex light 4"
+}
+Solid {
+  children [
+    Pose {
+      translation 8.637 6.368 3.05
+      rotation 0 0 1 2.0944
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 8 6.736 3.05
+      rotation 0 0 1 3.1416
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 7.362 6.368 3.05
+      rotation 0 0 1 4.1888
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 7.362 5.632 3.05
+      rotation 0 0 1 5.236
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 8 5.264 3.05
+      rotation 0 0 1 6.2832
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 8.637 5.632 3.05
+      rotation 0 0 1 7.3304
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    PointLight {
+      attenuation 0 0 1
+      intensity 5
+      location 8 6 2.65
+      radius 14
+    }
+  ]
+  name "hex light 5"
+}
+Solid {
+  children [
+    Pose {
+      translation 13.637 -5.632 3.05
+      rotation 0 0 1 2.0944
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 13 -5.264 3.05
+      rotation 0 0 1 3.1416
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 12.363 -5.632 3.05
+      rotation 0 0 1 4.1888
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 12.363 -6.368 3.05
+      rotation 0 0 1 5.236
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 13 -6.736 3.05
+      rotation 0 0 1 6.2832
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 13.637 -6.368 3.05
+      rotation 0 0 1 7.3304
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+  ]
+  name "hex light 6"
+}
+Solid {
+  children [
+    Pose {
+      translation 13.637 0.368 3.05
+      rotation 0 0 1 2.0944
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 13 0.736 3.05
+      rotation 0 0 1 3.1416
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 12.363 0.368 3.05
+      rotation 0 0 1 4.1888
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 12.363 -0.368 3.05
+      rotation 0 0 1 5.236
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 13 -0.736 3.05
+      rotation 0 0 1 6.2832
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 13.637 -0.368 3.05
+      rotation 0 0 1 7.3304
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    PointLight {
+      attenuation 0 0 1
+      intensity 5
+      location 13 0 2.65
+      radius 14
+    }
+  ]
+  name "hex light 7"
+}
+Solid {
+  children [
+    Pose {
+      translation 13.637 6.368 3.05
+      rotation 0 0 1 2.0944
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 13 6.736 3.05
+      rotation 0 0 1 3.1416
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 12.363 6.368 3.05
+      rotation 0 0 1 4.1888
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 12.363 5.632 3.05
+      rotation 0 0 1 5.236
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 13 5.264 3.05
+      rotation 0 0 1 6.2832
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 13.637 5.632 3.05
+      rotation 0 0 1 7.3304
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+  ]
+  name "hex light 8"
+}
+Solid {
+  translation 0 10.99 0
+  children [
+    Pose {
+      translation -7.362 -5.132 3.05
+      rotation 0 0 1 2.0944
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -8 -4.764 3.05
+      rotation 0 0 1 3.1416
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -8.637 -5.132 3.05
+      rotation 0 0 1 4.1888
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -8.637 -5.868 3.05
+      rotation 0 0 1 5.236
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -8 -6.236 3.05
+      rotation 0 0 1 6.2832
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -7.362 -5.868 3.05
+      rotation 0 0 1 7.3304
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    PointLight {
+      attenuation 0 0 1
+      intensity 5
+      location -8 -5.5 2.65
+      radius 14
+    }
+  ]
+  name "hex light 9"
+}
+Solid {
+  translation -0.75 -0.03 0
+  children [
+    Pose {
+      translation -11.363 0.868 3.05
+      rotation 0 0 1 2.0944
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -12 1.236 3.05
+      rotation 0 0 1 3.1416
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -12.637 0.868 3.05
+      rotation 0 0 1 4.1888
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -12.637 0.132 3.05
+      rotation 0 0 1 5.236
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -12 -0.236 3.05
+      rotation 0 0 1 6.2832
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -11.363 0.132 3.05
+      rotation 0 0 1 7.3304
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Box {
+            size 0.85 0.07 0.05
+          }
+        }
+      ]
+    }
+    PointLight {
+      attenuation 0 0 1
+      intensity 5
+      location -12 0.5 2.65
+      radius 14
+    }
+  ]
+  name "hex light 10"
+}
+Solid {
+  translation 3 -6 0
+  children [
+    Pose {
+      translation 0 0 0.74
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.93 0.93 0.95
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 1.6 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.45 -0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.45 0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.45 -0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.45 0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.94
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 0.03 0.4
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.6 0 0.89
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 1.6 0.3
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.6 0 0.89
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 1.6 0.3
+          }
+        }
+      ]
+    }
+  ]
+  name "desk pod 0"
+}
+Monitor {
+  translation 2.2 -6.2 0.77
+  rotation 0 0 1 1.5708
+  name "monitor 0-0"
+}
+Keyboard {
+  translation 2.2 -6.54 0.77
+  rotation 0 0 1 1.5708
+  name "keyboard 0-0"
+}
+OfficeChair {
+  translation 2.2 -4.65 0
+  rotation 0 0 1 -1.5708
+  name "office chair 0-0"
+}
+Monitor {
+  translation 3.8 -6.2 0.77
+  rotation 0 0 1 1.5708
+  name "monitor 0-1"
+}
+Keyboard {
+  translation 3.8 -6.54 0.77
+  rotation 0 0 1 1.5708
+  name "keyboard 0-1"
+}
+OfficeChair {
+  translation 3.8 -4.65 0
+  rotation 0 0 1 -1.5708
+  name "office chair 0-1"
+}
+Monitor {
+  translation 2.2 -5.8 0.77
+  rotation 0 0 1 -1.5708
+  name "monitor 0-2"
+}
+Keyboard {
+  translation 2.2 -5.46 0.77
+  rotation 0 0 1 -1.5708
+  name "keyboard 0-2"
+}
+OfficeChair {
+  translation 2.2 -7.35 0
+  rotation 0 0 1 1.5708
+  name "office chair 0-2"
+}
+Monitor {
+  translation 3.8 -5.8 0.77
+  rotation 0 0 1 -1.5708
+  name "monitor 0-3"
+}
+Keyboard {
+  translation 3.8 -5.46 0.77
+  rotation 0 0 1 -1.5708
+  name "keyboard 0-3"
+}
+OfficeChair {
+  translation 3.8 -7.35 0
+  rotation 0 0 1 1.5708
+  name "office chair 0-3"
+}
+Solid {
+  translation 3 0 0
+  children [
+    Pose {
+      translation 0 0 0.74
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.93 0.93 0.95
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 1.6 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.45 -0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.45 0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.45 -0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.45 0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.94
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 0.03 0.4
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.6 0 0.89
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 1.6 0.3
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.6 0 0.89
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 1.6 0.3
+          }
+        }
+      ]
+    }
+  ]
+  name "desk pod 1"
+}
+Monitor {
+  translation 2.2 -0.19999999999999998 0.77
+  rotation 0 0 1 1.5708
+  name "monitor 1-0"
+}
+Keyboard {
+  translation 2.2 -0.54 0.77
+  rotation 0 0 1 1.5708
+  name "keyboard 1-0"
+}
+OfficeChair {
+  translation 2.2 1.35 0
+  rotation 0 0 1 -1.5708
+  name "office chair 1-0"
+}
+Monitor {
+  translation 3.8 -0.19999999999999998 0.77
+  rotation 0 0 1 1.5708
+  name "monitor 1-1"
+}
+Keyboard {
+  translation 3.8 -0.54 0.77
+  rotation 0 0 1 1.5708
+  name "keyboard 1-1"
+}
+OfficeChair {
+  translation 3.8 1.35 0
+  rotation 0 0 1 -1.5708
+  name "office chair 1-1"
+}
+Monitor {
+  translation 2.2 0.19999999999999998 0.77
+  rotation 0 0 1 -1.5708
+  name "monitor 1-2"
+}
+Keyboard {
+  translation 2.2 0.54 0.77
+  rotation 0 0 1 -1.5708
+  name "keyboard 1-2"
+}
+OfficeChair {
+  translation 2.2 -1.35 0
+  rotation 0 0 1 1.5708
+  name "office chair 1-2"
+}
+Monitor {
+  translation 3.8 0.19999999999999998 0.77
+  rotation 0 0 1 -1.5708
+  name "monitor 1-3"
+}
+Keyboard {
+  translation 3.8 0.54 0.77
+  rotation 0 0 1 -1.5708
+  name "keyboard 1-3"
+}
+OfficeChair {
+  translation 3.8 -1.35 0
+  rotation 0 0 1 1.5708
+  name "office chair 1-3"
+}
+Solid {
+  translation 3 6 0
+  children [
+    Pose {
+      translation 0 0 0.74
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.93 0.93 0.95
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 1.6 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.45 -0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.45 0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.45 -0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.45 0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.94
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 0.03 0.4
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.6 0 0.89
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 1.6 0.3
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.6 0 0.89
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 1.6 0.3
+          }
+        }
+      ]
+    }
+  ]
+  name "desk pod 2"
+}
+Monitor {
+  translation 2.2 5.8 0.77
+  rotation 0 0 1 1.5708
+  name "monitor 2-0"
+}
+Keyboard {
+  translation 2.2 5.46 0.77
+  rotation 0 0 1 1.5708
+  name "keyboard 2-0"
+}
+OfficeChair {
+  translation 2.2 7.35 0
+  rotation 0 0 1 -1.5708
+  name "office chair 2-0"
+}
+Monitor {
+  translation 3.8 5.8 0.77
+  rotation 0 0 1 1.5708
+  name "monitor 2-1"
+}
+Keyboard {
+  translation 3.8 5.46 0.77
+  rotation 0 0 1 1.5708
+  name "keyboard 2-1"
+}
+OfficeChair {
+  translation 3.8 7.35 0
+  rotation 0 0 1 -1.5708
+  name "office chair 2-1"
+}
+Monitor {
+  translation 2.2 6.2 0.77
+  rotation 0 0 1 -1.5708
+  name "monitor 2-2"
+}
+Keyboard {
+  translation 2.2 6.54 0.77
+  rotation 0 0 1 -1.5708
+  name "keyboard 2-2"
+}
+OfficeChair {
+  translation 2.2 4.65 0
+  rotation 0 0 1 1.5708
+  name "office chair 2-2"
+}
+Monitor {
+  translation 3.8 6.2 0.77
+  rotation 0 0 1 -1.5708
+  name "monitor 2-3"
+}
+Keyboard {
+  translation 3.8 6.54 0.77
+  rotation 0 0 1 -1.5708
+  name "keyboard 2-3"
+}
+OfficeChair {
+  translation 3.8 4.65 0
+  rotation 0 0 1 1.5708
+  name "office chair 2-3"
+}
+Solid {
+  translation 8 -6 0
+  children [
+    Pose {
+      translation 0 0 0.74
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.93 0.93 0.95
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 1.6 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.45 -0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.45 0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.45 -0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.45 0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.94
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 0.03 0.4
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.6 0 0.89
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 1.6 0.3
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.6 0 0.89
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 1.6 0.3
+          }
+        }
+      ]
+    }
+  ]
+  name "desk pod 3"
+}
+Monitor {
+  translation 7.2 -6.2 0.77
+  rotation 0 0 1 1.5708
+  name "monitor 3-0"
+}
+Keyboard {
+  translation 7.2 -6.54 0.77
+  rotation 0 0 1 1.5708
+  name "keyboard 3-0"
+}
+OfficeChair {
+  translation 7.2 -4.65 0
+  rotation 0 0 1 -1.5708
+  name "office chair 3-0"
+}
+Monitor {
+  translation 8.8 -6.2 0.77
+  rotation 0 0 1 1.5708
+  name "monitor 3-1"
+}
+Keyboard {
+  translation 8.8 -6.54 0.77
+  rotation 0 0 1 1.5708
+  name "keyboard 3-1"
+}
+OfficeChair {
+  translation 8.8 -4.65 0
+  rotation 0 0 1 -1.5708
+  name "office chair 3-1"
+}
+Monitor {
+  translation 7.2 -5.8 0.77
+  rotation 0 0 1 -1.5708
+  name "monitor 3-2"
+}
+Keyboard {
+  translation 7.2 -5.46 0.77
+  rotation 0 0 1 -1.5708
+  name "keyboard 3-2"
+}
+OfficeChair {
+  translation 7.2 -7.35 0
+  rotation 0 0 1 1.5708
+  name "office chair 3-2"
+}
+Monitor {
+  translation 8.8 -5.8 0.77
+  rotation 0 0 1 -1.5708
+  name "monitor 3-3"
+}
+Keyboard {
+  translation 8.8 -5.46 0.77
+  rotation 0 0 1 -1.5708
+  name "keyboard 3-3"
+}
+OfficeChair {
+  translation 8.8 -7.35 0
+  rotation 0 0 1 1.5708
+  name "office chair 3-3"
+}
+Solid {
+  translation 8 0 0
+  children [
+    Pose {
+      translation 0 0 0.74
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.93 0.93 0.95
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 1.6 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.45 -0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.45 0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.45 -0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.45 0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.94
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 0.03 0.4
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.6 0 0.89
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 1.6 0.3
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.6 0 0.89
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 1.6 0.3
+          }
+        }
+      ]
+    }
+  ]
+  name "desk pod 4"
+}
+Monitor {
+  translation 7.2 -0.19999999999999998 0.77
+  rotation 0 0 1 1.5708
+  name "monitor 4-0"
+}
+Keyboard {
+  translation 7.2 -0.54 0.77
+  rotation 0 0 1 1.5708
+  name "keyboard 4-0"
+}
+OfficeChair {
+  translation 7.2 1.35 0
+  rotation 0 0 1 -1.5708
+  name "office chair 4-0"
+}
+Monitor {
+  translation 8.8 -0.19999999999999998 0.77
+  rotation 0 0 1 1.5708
+  name "monitor 4-1"
+}
+Keyboard {
+  translation 8.8 -0.54 0.77
+  rotation 0 0 1 1.5708
+  name "keyboard 4-1"
+}
+OfficeChair {
+  translation 8.8 1.35 0
+  rotation 0 0 1 -1.5708
+  name "office chair 4-1"
+}
+Monitor {
+  translation 7.2 0.19999999999999998 0.77
+  rotation 0 0 1 -1.5708
+  name "monitor 4-2"
+}
+Keyboard {
+  translation 7.2 0.54 0.77
+  rotation 0 0 1 -1.5708
+  name "keyboard 4-2"
+}
+OfficeChair {
+  translation 7.2 -1.35 0
+  rotation 0 0 1 1.5708
+  name "office chair 4-2"
+}
+Monitor {
+  translation 8.8 0.19999999999999998 0.77
+  rotation 0 0 1 -1.5708
+  name "monitor 4-3"
+}
+Keyboard {
+  translation 8.8 0.54 0.77
+  rotation 0 0 1 -1.5708
+  name "keyboard 4-3"
+}
+OfficeChair {
+  translation 8.8 -1.35 0
+  rotation 0 0 1 1.5708
+  name "office chair 4-3"
+}
+Solid {
+  translation 8 6 0
+  children [
+    Pose {
+      translation 0 0 0.74
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.93 0.93 0.95
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 1.6 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.45 -0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.45 0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.45 -0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.45 0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.94
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 0.03 0.4
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.6 0 0.89
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 1.6 0.3
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.6 0 0.89
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 1.6 0.3
+          }
+        }
+      ]
+    }
+  ]
+  name "desk pod 5"
+}
+Monitor {
+  translation 7.2 5.8 0.77
+  rotation 0 0 1 1.5708
+  name "monitor 5-0"
+}
+Keyboard {
+  translation 7.2 5.46 0.77
+  rotation 0 0 1 1.5708
+  name "keyboard 5-0"
+}
+OfficeChair {
+  translation 7.2 7.35 0
+  rotation 0 0 1 -1.5708
+  name "office chair 5-0"
+}
+Monitor {
+  translation 8.8 5.8 0.77
+  rotation 0 0 1 1.5708
+  name "monitor 5-1"
+}
+Keyboard {
+  translation 8.8 5.46 0.77
+  rotation 0 0 1 1.5708
+  name "keyboard 5-1"
+}
+OfficeChair {
+  translation 8.8 7.35 0
+  rotation 0 0 1 -1.5708
+  name "office chair 5-1"
+}
+Monitor {
+  translation 7.2 6.2 0.77
+  rotation 0 0 1 -1.5708
+  name "monitor 5-2"
+}
+Keyboard {
+  translation 7.2 6.54 0.77
+  rotation 0 0 1 -1.5708
+  name "keyboard 5-2"
+}
+OfficeChair {
+  translation 7.2 4.65 0
+  rotation 0 0 1 1.5708
+  name "office chair 5-2"
+}
+Monitor {
+  translation 8.8 6.2 0.77
+  rotation 0 0 1 -1.5708
+  name "monitor 5-3"
+}
+Keyboard {
+  translation 8.8 6.54 0.77
+  rotation 0 0 1 -1.5708
+  name "keyboard 5-3"
+}
+OfficeChair {
+  translation 8.8 4.65 0
+  rotation 0 0 1 1.5708
+  name "office chair 5-3"
+}
+Solid {
+  translation 13 -6 0
+  children [
+    Pose {
+      translation 0 0 0.74
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.93 0.93 0.95
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 1.6 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.45 -0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.45 0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.45 -0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.45 0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.94
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 0.03 0.4
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.6 0 0.89
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 1.6 0.3
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.6 0 0.89
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 1.6 0.3
+          }
+        }
+      ]
+    }
+  ]
+  name "desk pod 6"
+}
+Monitor {
+  translation 12.2 -6.2 0.77
+  rotation 0 0 1 1.5708
+  name "monitor 6-0"
+}
+Keyboard {
+  translation 12.2 -6.54 0.77
+  rotation 0 0 1 1.5708
+  name "keyboard 6-0"
+}
+OfficeChair {
+  translation 12.2 -4.65 0
+  rotation 0 0 1 -1.5708
+  name "office chair 6-0"
+}
+Monitor {
+  translation 13.8 -6.2 0.77
+  rotation 0 0 1 1.5708
+  name "monitor 6-1"
+}
+Keyboard {
+  translation 13.8 -6.54 0.77
+  rotation 0 0 1 1.5708
+  name "keyboard 6-1"
+}
+OfficeChair {
+  translation 13.8 -4.65 0
+  rotation 0 0 1 -1.5708
+  name "office chair 6-1"
+}
+Monitor {
+  translation 12.2 -5.8 0.77
+  rotation 0 0 1 -1.5708
+  name "monitor 6-2"
+}
+Keyboard {
+  translation 12.2 -5.46 0.77
+  rotation 0 0 1 -1.5708
+  name "keyboard 6-2"
+}
+OfficeChair {
+  translation 12.2 -7.35 0
+  rotation 0 0 1 1.5708
+  name "office chair 6-2"
+}
+Monitor {
+  translation 13.8 -5.8 0.77
+  rotation 0 0 1 -1.5708
+  name "monitor 6-3"
+}
+Keyboard {
+  translation 13.8 -5.46 0.77
+  rotation 0 0 1 -1.5708
+  name "keyboard 6-3"
+}
+OfficeChair {
+  translation 13.8 -7.35 0
+  rotation 0 0 1 1.5708
+  name "office chair 6-3"
+}
+Solid {
+  translation 13 0 0
+  children [
+    Pose {
+      translation 0 0 0.74
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.93 0.93 0.95
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 1.6 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.45 -0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.45 0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.45 -0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.45 0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.94
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 0.03 0.4
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.6 0 0.89
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 1.6 0.3
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.6 0 0.89
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 1.6 0.3
+          }
+        }
+      ]
+    }
+  ]
+  name "desk pod 7"
+}
+Monitor {
+  translation 12.2 -0.19999999999999998 0.77
+  rotation 0 0 1 1.5708
+  name "monitor 7-0"
+}
+Keyboard {
+  translation 12.2 -0.54 0.77
+  rotation 0 0 1 1.5708
+  name "keyboard 7-0"
+}
+OfficeChair {
+  translation 12.2 1.35 0
+  rotation 0 0 1 -1.5708
+  name "office chair 7-0"
+}
+Monitor {
+  translation 13.8 -0.19999999999999998 0.77
+  rotation 0 0 1 1.5708
+  name "monitor 7-1"
+}
+Keyboard {
+  translation 13.8 -0.54 0.77
+  rotation 0 0 1 1.5708
+  name "keyboard 7-1"
+}
+OfficeChair {
+  translation 13.8 1.35 0
+  rotation 0 0 1 -1.5708
+  name "office chair 7-1"
+}
+Monitor {
+  translation 12.2 0.19999999999999998 0.77
+  rotation 0 0 1 -1.5708
+  name "monitor 7-2"
+}
+Keyboard {
+  translation 12.2 0.54 0.77
+  rotation 0 0 1 -1.5708
+  name "keyboard 7-2"
+}
+OfficeChair {
+  translation 12.2 -1.35 0
+  rotation 0 0 1 1.5708
+  name "office chair 7-2"
+}
+Monitor {
+  translation 13.8 0.19999999999999998 0.77
+  rotation 0 0 1 -1.5708
+  name "monitor 7-3"
+}
+Keyboard {
+  translation 13.8 0.54 0.77
+  rotation 0 0 1 -1.5708
+  name "keyboard 7-3"
+}
+OfficeChair {
+  translation 13.8 -1.35 0
+  rotation 0 0 1 1.5708
+  name "office chair 7-3"
+}
+Solid {
+  translation 13 6 0
+  children [
+    Pose {
+      translation 0 0 0.74
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.93 0.93 0.95
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 1.6 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.45 -0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.45 0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.45 -0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.45 0.65 0.37
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.74
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.94
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 0.03 0.4
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.6 0 0.89
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 1.6 0.3
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.6 0 0.89
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            transparency 0.25
+            roughness 0.2
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 1.6 0.3
+          }
+        }
+      ]
+    }
+  ]
+  name "desk pod 8"
+}
+Monitor {
+  translation 12.2 5.8 0.77
+  rotation 0 0 1 1.5708
+  name "monitor 8-0"
+}
+Keyboard {
+  translation 12.2 5.46 0.77
+  rotation 0 0 1 1.5708
+  name "keyboard 8-0"
+}
+OfficeChair {
+  translation 12.2 7.35 0
+  rotation 0 0 1 -1.5708
+  name "office chair 8-0"
+}
+Monitor {
+  translation 13.8 5.8 0.77
+  rotation 0 0 1 1.5708
+  name "monitor 8-1"
+}
+Keyboard {
+  translation 13.8 5.46 0.77
+  rotation 0 0 1 1.5708
+  name "keyboard 8-1"
+}
+OfficeChair {
+  translation 13.8 7.35 0
+  rotation 0 0 1 -1.5708
+  name "office chair 8-1"
+}
+Monitor {
+  translation 12.2 6.2 0.77
+  rotation 0 0 1 -1.5708
+  name "monitor 8-2"
+}
+Keyboard {
+  translation 12.2 6.54 0.77
+  rotation 0 0 1 -1.5708
+  name "keyboard 8-2"
+}
+OfficeChair {
+  translation 12.2 4.65 0
+  rotation 0 0 1 1.5708
+  name "office chair 8-2"
+}
+Monitor {
+  translation 13.8 6.2 0.77
+  rotation 0 0 1 -1.5708
+  name "monitor 8-3"
+}
+Keyboard {
+  translation 13.8 6.54 0.77
+  rotation 0 0 1 -1.5708
+  name "keyboard 8-3"
+}
+OfficeChair {
+  translation 13.8 4.65 0
+  rotation 0 0 1 1.5708
+  name "office chair 8-3"
+}
+Solid {
+  translation -3.66 -3.7 0
+  rotation 0 0 1 1.5708
+  children [
+    Pose {
+      translation -3 1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.78 0.9
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -2.6 1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.47 0.71 0.85
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -2.2 1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.78 0.9
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.8 1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.47 0.71 0.85
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.4 1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.78 0.9
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1 1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.47 0.71 0.85
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.6 1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.78 0.9
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.2 1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.47 0.71 0.85
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.2 1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.78 0.9
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.6 1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.47 0.71 0.85
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1 1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.78 0.9
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.4 1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.47 0.71 0.85
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.8 1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.78 0.9
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 2.2 1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.47 0.71 0.85
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 2.6 1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.78 0.9
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 3 1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.47 0.71 0.85
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -3.1500000000000004 -1.3 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.78 0.9
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.4 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 3.1500000000000004 -1.3 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.78 0.9
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.4 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -3.1500000000000004 -0.9 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.47 0.71 0.85
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.4 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 3.1500000000000004 -0.9 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.47 0.71 0.85
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.4 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -3.1500000000000004 -0.5 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.78 0.9
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.4 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 3.1500000000000004 -0.5 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.78 0.9
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.4 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -3.1500000000000004 -0.1 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.47 0.71 0.85
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.4 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 3.1500000000000004 -0.1 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.47 0.71 0.85
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.4 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -3.1500000000000004 0.3 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.78 0.9
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.4 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 3.1500000000000004 0.3 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.78 0.9
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.4 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -3.1500000000000004 0.7 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.47 0.71 0.85
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.4 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 3.1500000000000004 0.7 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.47 0.71 0.85
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.4 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -3.1500000000000004 1.1 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.78 0.9
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.4 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 3.1500000000000004 1.1 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.55 0.78 0.9
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.4 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 2.59
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.47 0.71 0.85
+            roughness 0.6
+            metalness 0
+          }
+          geometry Box {
+            size 6.5 3.1 0.08
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.15 -1.45 1.1749999999999998
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.35 0.42 0.48
+            transparency 0.65
+            roughness 0.05
+            metalness 0.4
+          }
+          geometry Box {
+            size 2 0.06 2.1999999999999997
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.55 -1.45 1.1749999999999998
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.35 0.42 0.48
+            transparency 0.65
+            roughness 0.05
+            metalness 0.4
+          }
+          geometry Box {
+            size 2.6 0.06 2.1999999999999997
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -2.2 -1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.1 -1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.2 -1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 2.9 -1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -3.1700000000000004 -1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 3.1700000000000004 -1.45 1.275
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.1 2.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -1.45 2.4499999999999997
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 6.4 0.1 0.2
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -3.22 0 1.5
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.93 0.93 0.95
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.02 1 1.4
+          }
+        }
+      ]
+    }
+  ]
+  name "meeting pod"
+}
+Solid {
+  translation -3.23 -3.57 0
+  rotation 0 0 1 1.5708
+  children [
+    Pose {
+      translation 1.3 0.3 0.72
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.93 0.93 0.95
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 1.8 0.9 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.3 0.3 0.36
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.7 0.72
+          }
+        }
+      ]
+    }
+  ]
+  name "pod table"
+}
+OfficeChair {
+  translation -4.13 -1.86 0
+  rotation 0 0 -1 3.67802e-06
+  name "pod chair 1"
+}
+OfficeChair {
+  translation -4.14001 -2.62 0
+  rotation 0 0 -1 3.67802e-06
+  name "pod chair 2"
+}
+OfficeChair {
+  translation -3.02 -1.8 0
+  rotation 0 0 1 -3.1415853071795863
+  name "pod chair 3"
+}
+Solid {
+  translation -5.06 5.26 0
+  rotation 0 0 1 1.5708
+  children [
+    Pose {
+      translation 0 0 1.02
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.68 0.48
+            roughness 0.7
+            metalness 0
+          }
+          geometry Box {
+            size 2.4 0.6 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.1 0 0.51
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.06 0.5 1.02
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.1 0 0.51
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.06 0.5 1.02
+          }
+        }
+      ]
+    }
+  ]
+  name "high table"
+}
+Solid {
+  translation -4.18 6 0
+  children [
+    Pose {
+      translation 0 0 0.75
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.68 0.48
+            roughness 0.7
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.16
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.375
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.75
+            radius 0.03
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.02
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.04
+            radius 0.18
+          }
+        }
+      ]
+    }
+  ]
+  name "stool -13.4 2.5"
+}
+Solid {
+  translation -4.16 5.5 0
+  children [
+    Pose {
+      translation 0 0 0.75
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.68 0.48
+            roughness 0.7
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.16
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.375
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.75
+            radius 0.03
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.02
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.04
+            radius 0.18
+          }
+        }
+      ]
+    }
+  ]
+  name "stool -12.85 2.5"
+}
+Solid {
+  translation -4.17 4.97 0
+  children [
+    Pose {
+      translation 0 0 0.75
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.68 0.48
+            roughness 0.7
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.16
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.375
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.75
+            radius 0.03
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.02
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.04
+            radius 0.18
+          }
+        }
+      ]
+    }
+  ]
+  name "stool -12.3 2.5"
+}
+Solid {
+  translation -4.19 4.44 0
+  children [
+    Pose {
+      translation 0 0 0.75
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.68 0.48
+            roughness 0.7
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.16
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.375
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.75
+            radius 0.03
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.02
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.04
+            radius 0.18
+          }
+        }
+      ]
+    }
+  ]
+  name "stool -11.75 2.5"
+}
+Solid {
+  translation -7.17 5.39 0
+  rotation 0 0 1 -1.5707953071795862
+  children [
+    Pose {
+      translation 0 0 0.55
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.72 0.55 0.34
+            roughness 0.7
+            metalness 0
+          }
+          geometry Box {
+            size 4.2 0.7 1.1
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 1.12
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 4.4 0.9 0.06
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -0.38 0.12
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 1 0.3
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.1 0.9 0.2
+          }
+          geometry Box {
+            size 4.2 0.04 0.06
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -1.4 -0.38 0.6
+      rotation 0 1 0 0.5
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 1 0.3
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.1 0.9 0.2
+          }
+          geometry Box {
+            size 0.05 0.04 1
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.4 -0.38 0.6
+      rotation 0 1 0 -0.5
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 1 0.3
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.1 0.9 0.2
+          }
+          geometry Box {
+            size 0.05 0.04 1
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.6 -0.38 0.6
+      rotation 0 1 0 0.5
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 1 0.3
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.1 0.9 0.2
+          }
+          geometry Box {
+            size 0.05 0.04 1
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 1.6 -0.38 0.6
+      rotation 0 1 0 -0.5
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 1 0.3
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.1 0.9 0.2
+          }
+          geometry Box {
+            size 0.05 0.04 1
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 1.6 1.1
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 4.4 0.4 2.2
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 1.45 1.5
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.68 0.48
+            roughness 0.7
+            metalness 0
+          }
+          geometry Box {
+            size 4 0.05 0.04
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 1.45 1.9
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.68 0.48
+            roughness 0.7
+            metalness 0
+          }
+          geometry Box {
+            size 4 0.05 0.04
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0.9 2.45
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 1 0.3
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.1 0.9 0.2
+          }
+          geometry Box {
+            size 3 0.1 0.45
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0.9 2.45
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 0.06 0.6
+          }
+        }
+      ]
+    }
+  ]
+  name "bar"
+}
+PointLight {
+  attenuation 0 0 1
+  color 0.5 1 0.55
+  intensity 3
+  location -8 -8 2.2
+  radius 8
+}
+Solid {
+  translation -8.21 4.81 0
+  children [
+    Pose {
+      translation 0 0 0.78
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.16
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.39
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.78
+            radius 0.03
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.02
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.04
+            radius 0.18
+          }
+        }
+      ]
+    }
+  ]
+  name "stool -9.5 -7.6"
+}
+Solid {
+  translation -8.23 7 0
+  children [
+    Pose {
+      translation 0 0 0.78
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.16
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.39
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.78
+            radius 0.03
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.02
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.04
+            radius 0.18
+          }
+        }
+      ]
+    }
+  ]
+  name "stool -8.5 -7.6"
+}
+Solid {
+  translation -8.2 3.57 0
+  children [
+    Pose {
+      translation 0 0 0.78
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.16
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.39
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.78
+            radius 0.03
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.02
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.04
+            radius 0.18
+          }
+        }
+      ]
+    }
+  ]
+  name "stool -7.5 -7.6"
+}
+Solid {
+  translation -8.21 6.05 0
+  children [
+    Pose {
+      translation 0 0 0.78
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.16
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.39
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.78
+            radius 0.03
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.02
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.25 0.27
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.04
+            radius 0.18
+          }
+        }
+      ]
+    }
+  ]
+  name "stool -6.5 -7.6"
+}
+Solid {
+  translation 3.06 11.24 0
+  children [
+    Pose {
+      translation -9.5 -4.5 3.1
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Cylinder {
+            height 0.06
+            radius 0.55
+          }
+        }
+      ]
+    }
+  ]
+  name "ring light -9.5 -4.5"
+}
+Solid {
+  translation 0.79 8.5 0
+  children [
+    Pose {
+      translation -7 -4.2 3.1
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Cylinder {
+            height 0.06
+            radius 0.7
+          }
+        }
+      ]
+    }
+  ]
+  name "ring light -7.0 -4.2"
+}
+Solid {
+  translation -2.21 7.58 0
+  children [
+    Pose {
+      translation -5 -5.5 3.1
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Cylinder {
+            height 0.06
+            radius 0.5
+          }
+        }
+      ]
+    }
+  ]
+  name "ring light -5.0 -5.5"
+}
+Solid {
+  translation 4.11 13.8 0
+  children [
+    Pose {
+      translation -11.5 -5 3.1
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.9 0.9 0.85
+          }
+          geometry Cylinder {
+            height 0.06
+            radius 0.6
+          }
+        }
+      ]
+    }
+  ]
+  name "ring light -11.5 -5.0"
+}
+Solid {
+  translation 2.38 2.74 0
+  children [
+    Pose {
+      translation -13 -6.3 0.012
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.15 0.25 0.45
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 3.4 2.6 0.02
+          }
+        }
+      ]
+    }
+  ]
+  name "rug"
+}
+Solid {
+  translation -9.26974 -2.74161 -0.18
+  rotation 0 0 1 -0.6
+  children [
+    Pose {
+      translation 0 0 0.35
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.88 0.42 0.14
+            roughness 0.8
+            metalness 0
+          }
+          geometry Box {
+            size 0.75 0.75 0.25
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0.33 0.7
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.88 0.42 0.14
+            roughness 0.8
+            metalness 0
+          }
+          geometry Box {
+            size 0.75 0.16 0.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.36 0.05 0.58
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.88 0.42 0.14
+            roughness 0.8
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.68 0.22
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.36 0.05 0.58
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.88 0.42 0.14
+            roughness 0.8
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.68 0.22
+          }
+        }
+      ]
+    }
+  ]
+  name "armchair 1"
+}
+Solid {
+  translation -12.0074 -2.80244 -0.14
+  rotation 0 0 1 0.4
+  children [
+    Pose {
+      translation 0 0 0.35
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.88 0.42 0.14
+            roughness 0.8
+            metalness 0
+          }
+          geometry Box {
+            size 0.75 0.75 0.25
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0.33 0.7
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.88 0.42 0.14
+            roughness 0.8
+            metalness 0
+          }
+          geometry Box {
+            size 0.75 0.16 0.55
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.36 0.05 0.58
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.88 0.42 0.14
+            roughness 0.8
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.68 0.22
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.36 0.05 0.58
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.88 0.42 0.14
+            roughness 0.8
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.68 0.22
+          }
+        }
+      ]
+    }
+  ]
+  name "armchair 2"
+}
+Solid {
+  translation 1.62 3.55 0
+  children [
+    Pose {
+      translation -12.4 -6.3 0.2
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.45 0.45 0.47
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.9 0.55 0.04
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -12.4 -6.3 0.09
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.06 0.06 0.18
+          }
+        }
+      ]
+    }
+  ]
+  name "coffee table"
+}
+Solid {
+  translation 0.53 0.13 0
+  children [
+    Pose {
+      translation -11.2 -4.6 0.35
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.45 0.45 0.47
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.35
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -11.2 -4.6 0.17
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.35
+            radius 0.04
+          }
+        }
+      ]
+    }
+  ]
+  name "side table"
+}
+Solid {
+  translation 0 0.54 0
+  children [
+    Pose {
+      translation -15.88 -4 2.1
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.06 2 1.1
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -15.84 -4 2.1
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.3 0.5 0.8
+            roughness 0.9
+            metalness 0
+            emissiveColor 0.25 0.4 0.7
+          }
+          geometry Box {
+            size 0.02 1.85 0.95
+          }
+        }
+      ]
+    }
+  ]
+  name "tv"
+}
+Solid {
+  translation -10.69 -8.2 0
+  children [
+    Pose {
+      translation 0 0 0.75
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.62 0.8 0.1
+            roughness 0.4
+            metalness 0
+          }
+          geometry Box {
+            size 1.4 0.8 0.3
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.55 -0.3 0.3
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.1 0.6
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.55 -0.3 0.3
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.1 0.6
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.55 0.3 0.3
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.1 0.6
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.55 0.3 0.3
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.11
+            roughness 0.9
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.1 0.6
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.4 0 0.95
+      rotation 1 0 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.75 0.76 0.78
+            roughness 0.35
+            metalness 0.9
+          }
+          geometry Cylinder {
+            height 1.1
+            radius 0.015
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.95
+      rotation 1 0 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.75 0.76 0.78
+            roughness 0.35
+            metalness 0.9
+          }
+          geometry Cylinder {
+            height 1.1
+            radius 0.015
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.4 0 0.95
+      rotation 1 0 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.75 0.76 0.78
+            roughness 0.35
+            metalness 0.9
+          }
+          geometry Cylinder {
+            height 1.1
+            radius 0.015
+          }
+        }
+      ]
+    }
+  ]
+  name "foosball"
+}
+Solid {
+  translation 15.55 0 0
+  children [
+    Pose {
+      translation 0 -2 1.25
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.68 0.48
+            roughness 0.7
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 2.5
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -1 1.25
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.68 0.48
+            roughness 0.7
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 2.5
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 1.25
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.68 0.48
+            roughness 0.7
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 2.5
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 1 1.25
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.68 0.48
+            roughness 0.7
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 2.5
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 2 1.25
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.68 0.48
+            roughness 0.7
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 2.5
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 0.5
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.68 0.48
+            roughness 0.7
+            metalness 0
+          }
+          geometry Box {
+            size 0.3 4.2 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 1.1
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.68 0.48
+            roughness 0.7
+            metalness 0
+          }
+          geometry Box {
+            size 0.3 4.2 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 1.7
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.68 0.48
+            roughness 0.7
+            metalness 0
+          }
+          geometry Box {
+            size 0.3 4.2 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0 2.3
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.68 0.48
+            roughness 0.7
+            metalness 0
+          }
+          geometry Box {
+            size 0.3 4.2 0.05
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -1.5 0.6200000000000001
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.9 0.9
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.09
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -1.5 0.79
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.55 0.2
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.14
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -0.5 0.6200000000000001
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.9 0.9
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.09
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -0.5 0.79
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.55 0.2
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.14
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0.5 0.6200000000000001
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.9 0.9
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.09
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0.5 0.79
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.55 0.2
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.14
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 1.5 0.6200000000000001
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.9 0.9
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.09
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 1.5 0.79
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.55 0.2
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.14
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -1.5 1.22
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.9 0.9
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.09
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -1.5 1.39
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.55 0.2
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.14
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -0.5 1.22
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.9 0.9
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.09
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -0.5 1.39
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.55 0.2
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.14
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0.5 1.22
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.9 0.9
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.09
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0.5 1.39
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.55 0.2
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.14
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 1.5 1.22
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.9 0.9
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.09
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 1.5 1.39
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.55 0.2
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.14
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -1.5 1.82
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.9 0.9
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.09
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -1.5 1.99
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.55 0.2
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.14
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -0.5 1.82
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.9 0.9
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.09
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -0.5 1.99
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.55 0.2
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.14
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0.5 1.82
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.9 0.9
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.09
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0.5 1.99
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.55 0.2
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.14
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 1.5 1.82
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.9 0.9
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.09
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 1.5 1.99
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.55 0.2
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.14
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -1.5 2.4199999999999995
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.9 0.9
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.09
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -1.5 2.59
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.55 0.2
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.14
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -0.5 2.4199999999999995
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.9 0.9
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.09
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -0.5 2.59
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.55 0.2
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.14
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0.5 2.4199999999999995
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.9 0.9
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.09
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0.5 2.59
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.55 0.2
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.14
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 1.5 2.4199999999999995
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.9 0.9
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.09
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 1.5 2.59
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.55 0.2
+            roughness 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.14
+          }
+        }
+      ]
+    }
+  ]
+  name "plant wall"
+}
+PottedTree {
+  translation 15.21 -9.28 0
+  name "tree 14.2 -4.2"
+}
+PottedTree {
+  translation 15.35 9.24 0
+  name "tree 14.2 4.2"
+}
+PottedTree {
+  translation -2 9.47 0
+  name "tree -2.0 7.5"
+}
+PottedTree {
+  translation -3.61 -9.61 0
+  name "tree -2.0 -2.5"
+}
+PointLight {
+  attenuation 0 0 1
+  intensity 4.5
+  location 3 -3 2.8
+  radius 13
+}
+PointLight {
+  attenuation 0 0 1
+  intensity 4.5
+  location 13 3 2.8
+  radius 13
+}
+PointLight {
+  attenuation 0 0 1
+  intensity 4.5
+  location -3 3 2.8
+  radius 13
+}
+PointLight {
+  attenuation 0 0 1
+  intensity 4.5
+  location -13 -3 2.8
+  radius 13
+}

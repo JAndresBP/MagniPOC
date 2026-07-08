@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="arm_joint_interface" params="name">
+    <joint name="${name}">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- finger_joint2 has a mimic tag in franka_hand.xacro (it mechanically
+       follows finger_joint1), so ros2_control's URDF parser forbids it from
+       having a command_interface; state feedback only. -->
+  <xacro:macro name="mimic_joint_interface" params="name">
+    <joint name="${name}">
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="franka_arm_ros2_control" params="name robot_type use_mock_hardware hand">
+    <ros2_control name="${name}" type="system">
+      <xacro:if value="${use_mock_hardware}">
+        <hardware>
+          <plugin>webots_ros2_control::Ros2ControlSystem</plugin>
+        </hardware>
+      </xacro:if>
+      <xacro:unless value="${use_mock_hardware}">
+        <hardware>
+          <plugin>franka_hardware/FrankaHardwareInterface</plugin>
+        </hardware>
+      </xacro:unless>
+
+      <xacro:arm_joint_interface name="${robot_type}_joint1"/>
+      <xacro:arm_joint_interface name="${robot_type}_joint2"/>
+      <xacro:arm_joint_interface name="${robot_type}_joint3"/>
+      <xacro:arm_joint_interface name="${robot_type}_joint4"/>
+      <xacro:arm_joint_interface name="${robot_type}_joint5"/>
+      <xacro:arm_joint_interface name="${robot_type}_joint6"/>
+      <xacro:arm_joint_interface name="${robot_type}_joint7"/>
+
+      <xacro:if value="${hand}">
+        <xacro:arm_joint_interface name="${robot_type}_finger_joint1"/>
+        <xacro:mimic_joint_interface name="${robot_type}_finger_joint2"/>
+      </xacro:if>
+    </ros2_control>
+  </xacro:macro>
+</robot>

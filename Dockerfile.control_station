@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y python3-pip \
     ros-jazzy-teleop-twist-joy \
     ros-jazzy-joy-linux \
     ros-jazzy-rviz2 \
+    ros-jazzy-navigation2 \
+    ros-jazzy-nav2-bringup \
     ros-jazzy-cartographer-ros || true
 
 # Workspace layout
