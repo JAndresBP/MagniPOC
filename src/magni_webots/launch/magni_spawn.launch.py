@@ -242,12 +242,17 @@ def get_robot_spawner(*args):
 def generate_launch_description():
     use_webots_gui_arg = DeclareLaunchArgument("use_webots_gui", default_value='false')
     use_sim_time_arg = DeclareLaunchArgument("use_sim_time", default_value="true",)
-    
+    world_arg = DeclareLaunchArgument(
+        "world",
+        default_value="tech_office.wbt",
+        description="Webots world file name, relative to magni_webots/worlds/"
+    )
+
     # Package shares
     magni_webots_pkg_share = get_package_share_directory('magni_webots')
-    
+
     # Launch Webots simulation environment
-    world_file = os.path.join(magni_webots_pkg_share, 'worlds', 'tech_office.wbt')
+    world_file = PathJoinSubstitution([magni_webots_pkg_share, 'worlds', LaunchConfiguration('world')])
 
     webots_launcher = WebotsLauncher(
         world=world_file,
@@ -283,6 +288,7 @@ def generate_launch_description():
     return LaunchDescription([
         use_webots_gui_arg,
         use_sim_time_arg,
+        world_arg,
         webots_launcher,
         webots_launcher._supervisor,
 

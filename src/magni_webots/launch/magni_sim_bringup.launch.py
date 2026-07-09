@@ -30,6 +30,13 @@ def generate_launch_description() -> LaunchDescription:
         description='Whether to launch Nav2 navigation subsystem (requires mapping)'
     )
 
+    # Launch argument to select the Webots world (default: tech_office.wbt)
+    world_arg = DeclareLaunchArgument(
+        'world',
+        default_value='tech_office.wbt',
+        description='Webots world file name, relative to magni_webots/worlds/'
+    )
+
     rviz_config = os.path.join(
         get_package_share_directory('magni_control_station'),
         'config',
@@ -60,7 +67,8 @@ def generate_launch_description() -> LaunchDescription:
     webots_launcher = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             magni_webots_launch
-        )
+        ),
+        launch_arguments={'world': LaunchConfiguration('world')}.items()
     )
 
     mapping_launcher = IncludeLaunchDescription(
@@ -91,6 +99,7 @@ def generate_launch_description() -> LaunchDescription:
     ld.add_action(rviz_arg)
     ld.add_action(mapping_arg)
     ld.add_action(navigation_arg)
+    ld.add_action(world_arg)
     ld.add_action(webots_launcher)
     ld.add_action(mapping_launcher)
     ld.add_action(navigation_launcher)

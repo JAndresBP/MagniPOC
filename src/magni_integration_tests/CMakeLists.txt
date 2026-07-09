@@ -19,6 +19,9 @@ if(BUILD_TESTING)
   add_ros_isolated_launch_test(tests/test_mapping_smoke.py)
   add_ros_isolated_launch_test(tests/test_speed_response.py)
   add_ros_isolated_launch_test(tests/test_navigation_smoke.py)
+  # Longer path around a static obstacle takes 75-100s in practice -- default ctest TIMEOUT (60s)
+  # kills it before it can write a result, so bump it explicitly.
+  add_ros_isolated_launch_test(tests/test_navigation_obstacle_avoidance.py TIMEOUT 240)
 endif()
 
 ament_package()

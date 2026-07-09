@@ -38,6 +38,9 @@ RUN apt-get update && apt-get install -y python3-pip \
     ros-jazzy-teleop-twist-joy \
     ros-jazzy-image-transport-plugins
 
+
+RUN curl -fsSL https://claude.ai/install.sh | bash
+
 ENV SHELL=/bin/bash
 ENV NVIDIA_VISIBLE_DEVICES=${NVIDIA_VISIBLE_DEVICES:-all}
 ENV NVIDIA_DRIVER_CAPABILITIES=${NVIDIA_DRIVER_CAPABILITIES:-all}
