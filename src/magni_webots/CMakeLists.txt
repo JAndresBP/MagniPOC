@@ -20,6 +20,7 @@ add_library(
   ${PROJECT_NAME}
   SHARED
   src/NodeRemover.cpp
+  src/TestSupervisor.cpp
 )
 target_include_directories(
   ${PROJECT_NAME}

@@ -6,4 +6,10 @@
       This is a Webots ROS 2 plugin example
     </description>
   </class>
+  <class type="magni_webots::TestSupervisor" base_class_type="webots_ros2_driver::PluginInterface">
+    <description>
+      Publishes ground-truth PoseStamped for a configurable list of tracked Webots node names, for use in
+      local/integration tests.
+    </description>
+  </class>
 </library>

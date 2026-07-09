@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Simple helper to launch the Webots simulation with optional features.
-# Usage: ./launch-webots-simulation.sh [--rviz] [--mapping] [--no-arm] [--arm-family=rebotarm] [--robot-type=fr3] [--no-hand]
+# Usage: ./launch-webots-simulation.sh [--rviz] [--mapping] [--nav2] [--world=tech_office.wbt] [--no-arm] [--arm-family=rebotarm] [--robot-type=fr3] [--no-hand]
 #                                      [--no-torso] [--torso-left=tray|none] [--torso-head=screen|sensor_head|none]
 
 source /opt/ros/jazzy/setup.bash
@@ -9,6 +9,8 @@ source /home/ws/install/setup.bash
 
 RVIZ=false
 MAPPING=false
+NAV2=false
+WORLD=tech_office.wbt
 ARM_INSTALLED=true
 ARM_FAMILY=rebotarm
 ROBOT_TYPE=fr3
@@ -23,6 +25,8 @@ print_usage() {
   echo
   echo "  --rviz                 Launch RViz (default: false)"
   echo "  --mapping              Launch mapping subsystem (default: false)"
+  echo "  --nav2                 Launch Nav2 navigation (implies --mapping, default: false)"
+  echo "  --world=<file>         Webots world file name, relative to magni_webots/worlds/ (default: tech_office.wbt)"
   echo "  --no-arm               Spawn Magni without an arm (default: arm installed)"
   echo "  --arm-family=<family>  Which arm to mount: rebotarm, franka (default: rebotarm)"
   echo "  --robot-type=<type>    Franka arm model, only used with --arm-family=franka: fr3, fer, fp3, ... (default: fr3)"
@@ -41,6 +45,14 @@ while [[ $# -gt 0 ]]; do
       ;;
     --mapping)
       MAPPING=true
+      shift
+      ;;
+    --nav2)
+      NAV2=true
+      shift
+      ;;
+    --world=*)
+      WORLD="${1#*=}"
       shift
       ;;
     --no-arm)
@@ -111,9 +123,17 @@ LAUNCH_ARGS=()
 if [ "$RVIZ" = true ]; then
   LAUNCH_ARGS+=("rviz:=true")
 fi
+# Nav2 (SLAM mode) needs Cartographer's /map, so --nav2 implies mapping too.
+if [ "$NAV2" = true ]; then
+  MAPPING=true
+fi
 if [ "$MAPPING" = true ]; then
   LAUNCH_ARGS+=("mapping:=true")
 fi
+if [ "$NAV2" = true ]; then
+  LAUNCH_ARGS+=("navigation:=true")
+fi
+LAUNCH_ARGS+=("world:=$WORLD")
 
 # magni_spawn.launch.py builds the spawned robot_description before any launch
 # context exists, so the arm options can't be passed as ros2 launch arguments --

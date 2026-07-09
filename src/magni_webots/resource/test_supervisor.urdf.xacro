@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<robot name="TestSupervisor" xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:arg name="track_nodes" default="magni"/>
+    <webots>
+        <plugin type="magni_webots::TestSupervisor">
+            <!-- getPluginProperties() reads <plugin> child elements (name -> text), not attributes. -->
+            <track_nodes>$(arg track_nodes)</track_nodes>
+        </plugin>
+    </webots>
+</robot>

@@ -21,7 +21,22 @@ def generate_launch_description() -> LaunchDescription:
         default_value='false',
         description='Whether to launch mapping subsystem'
     )
-    
+
+    # Launch argument to enable Nav2 navigation (default: false). SLAM mode: relies on
+    # magni_mapping's Cartographer for /map + map->odom, so it needs mapping:=true too.
+    navigation_arg = DeclareLaunchArgument(
+        'navigation',
+        default_value='false',
+        description='Whether to launch Nav2 navigation subsystem (requires mapping)'
+    )
+
+    # Launch argument to select the Webots world (default: tech_office.wbt)
+    world_arg = DeclareLaunchArgument(
+        'world',
+        default_value='tech_office.wbt',
+        description='Webots world file name, relative to magni_webots/worlds/'
+    )
+
     rviz_config = os.path.join(
         get_package_share_directory('magni_control_station'),
         'config',
@@ -41,11 +56,19 @@ def generate_launch_description() -> LaunchDescription:
         'launch',
         'mapping.launch.py'
     )
-    
+
+    magni_navigation_pkg_share = get_package_share_directory('magni_navigation')
+    magni_navigation_launch = os.path.join(
+        magni_navigation_pkg_share,
+        'launch',
+        'navigation.launch.py'
+    )
+
     webots_launcher = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             magni_webots_launch
-        )
+        ),
+        launch_arguments={'world': LaunchConfiguration('world')}.items()
     )
 
     mapping_launcher = IncludeLaunchDescription(
@@ -53,6 +76,13 @@ def generate_launch_description() -> LaunchDescription:
             magni_mapping_launch
         ),
         condition=IfCondition(LaunchConfiguration('mapping'))
+    )
+
+    navigation_launcher = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            magni_navigation_launch
+        ),
+        condition=IfCondition(LaunchConfiguration('navigation'))
     )
 
     # RViz node, launched only if "rviz" is true
@@ -68,7 +98,10 @@ def generate_launch_description() -> LaunchDescription:
     ld = LaunchDescription()
     ld.add_action(rviz_arg)
     ld.add_action(mapping_arg)
+    ld.add_action(navigation_arg)
+    ld.add_action(world_arg)
     ld.add_action(webots_launcher)
     ld.add_action(mapping_launcher)
+    ld.add_action(navigation_launcher)
     ld.add_action(rviz_node)
     return ld

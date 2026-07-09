@@ -70,6 +70,7 @@ A small, focused summary to quickly onboard developers and operators: what the s
 ## Suggested next steps (short) ➕
 - Add a minimal architecture diagram (SVG/ASCII) to `architecture/` (if desired).
 - Add **Cartographer 2D mapping** (LIDAR + odometry) — design completed and saved to `architecture/cartographer_design.md`; **`magni_mapping` package created** with template configs, launch, and smoke-test script; next: integrate mapping into `magni_bringup` and wire CI smoke-test runner.
+- Add **Nav2 navigation** (SLAM mode, reusing Cartographer's `/map` + TF, no AMCL) — design in `architecture/adr/004-nav2-navigation.md`; **`magni_navigation` package created** with `nav2_params.yaml` + `navigation.launch.py`, wired into `magni_sim_bringup.launch.py` via a `navigation` arg and `scripts/launch-webots-simulation.sh --nav2`; next: tune `controller_server`/costmap parameters against the real chassis footprint and consider AMCL + a saved map for deployment once a map is captured.
 - Add a small integration test: launch simulation + publish `cmd_vel` programmatically and assert odom changes.
 - Add README section summarizing the above quick checks, mapping steps, and common troubleshooting tips.
 
