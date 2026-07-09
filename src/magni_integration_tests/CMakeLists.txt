@@ -18,6 +18,7 @@ if(BUILD_TESTING)
   add_ros_isolated_launch_test(tests/test_mapping_launch.py)
   add_ros_isolated_launch_test(tests/test_mapping_smoke.py)
   add_ros_isolated_launch_test(tests/test_speed_response.py)
+  add_ros_isolated_launch_test(tests/test_navigation_smoke.py)
 endif()
 
 ament_package()
