@@ -36,7 +36,9 @@ RUN apt-get update && apt-get install -y python3-pip \
     ros-jazzy-cartographer-ros \
     ros-jazzy-teleop-twist-keyboard \
     ros-jazzy-teleop-twist-joy \
-    ros-jazzy-image-transport-plugins
+    ros-jazzy-image-transport-plugins \
+    ros-jazzy-moveit \
+    ros-jazzy-moveit-py
 
 
 RUN curl -fsSL https://claude.ai/install.sh | bash

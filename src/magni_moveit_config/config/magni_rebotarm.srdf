@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!--
+Adapted from src/rebotarm_ros2/src/rebotarm_moveit_config/config/rebotarm.srdf (upstream, for a
+standalone arm) to MAGNI's composed URDF, see architecture/adr/005-moveit-rebotarm.md.
+
+Differences from the upstream SRDF:
+- chain base_link is "rebotarm_base_link", not "base_link": magni_description's copy of the arm
+  xacro renames the arm's root link to avoid colliding with MAGNI's own base_link (see
+  src/magni_description/urdf/rebotarm.control.xacro's comment).
+- chain tip_link is "gripper_link", not "gripper_tcp": MAGNI's vendored arm xacro
+  (reBot_B601_DM_with_gripper.xacro) doesn't define a gripper_tcp frame (that's only in the
+  submodule's own separate URDF copy). Using gripper_link directly avoids fabricating an
+  unmeasured offset; adding a proper TCP frame is a good follow-up, not a blocker.
+- virtual_joint child_link is "base_footprint", MAGNI's actual URDF root, not "base_link":
+  rebotarm_base_link is partway down the tree (arm_mount_joint -> torso_right_arm_mount ->
+  torso_frame -> base_link -> base_footprint, all wired in magni.urdf.xacro).
+- disable_collisions: renamed base_link -> rebotarm_base_link, dropped the gripper_tcp entries.
+  The arm-internal pairs below are a safe starting point, but whether the near-base arm links
+  (link1/link2) also need pairs disabled against torso_frame has NOT been verified against the
+  actual composed MAGNI+arm geometry, see the ADR.
+-->
+<!-- name must match magni.urdf.xacro's <robot name="magni">, or srdfdom warns about a
+     robot name mismatch between the URDF and SRDF. -->
+<robot name="magni">
+  <group name="arm">
+    <chain base_link="rebotarm_base_link" tip_link="gripper_link"/>
+  </group>
+
+  <group name="gripper">
+    <joint name="gripper_joint1"/>
+    <joint name="gripper_joint2"/>
+  </group>
+
+  <group_state name="home" group="arm">
+    <joint name="joint1" value="0.0"/>
+    <joint name="joint2" value="0.0"/>
+    <joint name="joint3" value="0.0"/>
+    <joint name="joint4" value="0.0"/>
+    <joint name="joint5" value="0.0"/>
+    <joint name="joint6" value="0.0"/>
+  </group_state>
+
+  <group_state name="open" group="gripper">
+    <joint name="gripper_joint1" value="0.0715"/>
+    <joint name="gripper_joint2" value="0.0715"/>
+  </group_state>
+
+  <group_state name="closed" group="gripper">
+    <joint name="gripper_joint1" value="0.0"/>
+    <joint name="gripper_joint2" value="0.0"/>
+  </group_state>
+
+  <end_effector name="gripper" parent_link="gripper_link" group="gripper" parent_group="arm"/>
+
+  <virtual_joint name="FixedBase" type="fixed" parent_frame="world" child_link="base_footprint"/>
+
+  <disable_collisions link1="rebotarm_base_link" link2="link1" reason="Adjacent"/>
+  <disable_collisions link1="link1" link2="link2" reason="Adjacent"/>
+  <disable_collisions link1="link2" link2="link3" reason="Adjacent"/>
+  <disable_collisions link1="link3" link2="link4" reason="Adjacent"/>
+  <disable_collisions link1="link4" link2="link5" reason="Adjacent"/>
+  <disable_collisions link1="link5" link2="link6" reason="Adjacent"/>
+  <disable_collisions link1="link6" link2="gripper_link" reason="Adjacent"/>
+  <disable_collisions link1="gripper_link" link2="gripper_left" reason="Adjacent"/>
+  <disable_collisions link1="gripper_link" link2="gripper_right" reason="Adjacent"/>
+  <disable_collisions link1="gripper_left" link2="gripper_right" reason="Never"/>
+</robot>

@@ -10,6 +10,7 @@ source /home/ws/install/setup.bash
 RVIZ=false
 MAPPING=false
 NAV2=false
+MOVEIT=false
 WORLD=tech_office.wbt
 ARM_INSTALLED=true
 ARM_FAMILY=rebotarm
@@ -26,6 +27,7 @@ print_usage() {
   echo "  --rviz                 Launch RViz (default: false)"
   echo "  --mapping              Launch mapping subsystem (default: false)"
   echo "  --nav2                 Launch Nav2 navigation (implies --mapping, default: false)"
+  echo "  --moveit               Launch MoveIt 2 for the reBot Arm (rebotarm arm-family + arm installed only, default: false)"
   echo "  --world=<file>         Webots world file name, relative to magni_webots/worlds/ (default: tech_office.wbt)"
   echo "  --no-arm               Spawn Magni without an arm (default: arm installed)"
   echo "  --arm-family=<family>  Which arm to mount: rebotarm, franka (default: rebotarm)"
@@ -49,6 +51,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --nav2)
       NAV2=true
+      shift
+      ;;
+    --moveit)
+      MOVEIT=true
       shift
       ;;
     --world=*)
@@ -103,6 +109,17 @@ case "$ARM_FAMILY" in
     ;;
 esac
 
+if [ "$MOVEIT" = true ]; then
+  if [ "$ARM_INSTALLED" = false ]; then
+    echo "--moveit requires an arm to be installed (don't combine with --no-arm)"
+    exit 1
+  fi
+  if [ "$ARM_FAMILY" != rebotarm ]; then
+    echo "--moveit only supports --arm-family=rebotarm (magni_moveit_config's SRDF is rebotarm-specific)"
+    exit 1
+  fi
+fi
+
 case "$TORSO_LEFT" in
   tray|none) ;;
   *)
@@ -132,6 +149,9 @@ if [ "$MAPPING" = true ]; then
 fi
 if [ "$NAV2" = true ]; then
   LAUNCH_ARGS+=("navigation:=true")
+fi
+if [ "$MOVEIT" = true ]; then
+  LAUNCH_ARGS+=("moveit:=true")
 fi
 LAUNCH_ARGS+=("world:=$WORLD")
 
