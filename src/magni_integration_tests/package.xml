@@ -19,5 +19,8 @@
   <test_depend>cartographer_ros_msgs</test_depend>
   <test_depend>nav2_msgs</test_depend>
   <test_depend>magni_navigation</test_depend>
+  <test_depend>magni_moveit_config</test_depend>
+  <test_depend>moveit_msgs</test_depend>
+  <test_depend>sensor_msgs</test_depend>
 
 </package>
